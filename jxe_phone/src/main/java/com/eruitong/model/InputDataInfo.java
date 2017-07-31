@@ -69,7 +69,7 @@ public class InputDataInfo {
     public String outsiteName;
     public String paymentTypeCode;
     public String productTypeCode;
-    public int quantity;
+    public String quantity;
     public String realWeightQty;
     public String serviceTypeCode;
     public String settlementTypeCode;
@@ -123,6 +123,7 @@ public class InputDataInfo {
         sourceZoneCode = "";
         destZoneCode = "";
         waybillNo = "";
+        quantity = "0";
         consignorPhone = "";
         consignorContName = "";
         consignorAddr = "";
@@ -134,8 +135,9 @@ public class InputDataInfo {
         deliverFee = "0.0";
         destZoneName = "";
         consName = "";
+        discountExpressFee = "0";
         volume = "0";
-        waybillFee = "0";
+        waybillFee = "0.0";
         deboursFee = "0.0";
         goodsChargeFee = "0.0";
         chargeAgentFee = "0.0";

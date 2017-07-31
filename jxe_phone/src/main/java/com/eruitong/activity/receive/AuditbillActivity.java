@@ -1468,10 +1468,10 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
      * 计算运费
      *//*
 	private void priceFee() {
-		Volume = mEdtVolume.getText().toString().trim();
+		volume = mEdtVolume.getText().toString().trim();
 		realWeightQty = mEdtRealWeightQty.getText().toString();
 
-		if (MyUtils.isEmpty(Volume)) {
+		if (MyUtils.isEmpty(volume)) {
 			// 体积是空的
 			if (MyUtils.isEmpty(realWeightQty)) {
 				// 重量是空
@@ -1485,9 +1485,9 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 			// 体积不是空
 			Double volume;
 			if (!distCodeType(mSestdeptCode, seleDestCode).equals("D4")) {
-				volume = Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 4500D);
+				volume = Double.valueOf((Double.parseDouble(volume) * 1000000D) / 4500D);
 			} else {
-				volume = Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 6000D);
+				volume = Double.valueOf((Double.parseDouble(volume) * 1000000D) / 6000D);
 			}
 			if (MyUtils.isEmpty(realWeightQty)) {
 				// 重量是空
@@ -2762,7 +2762,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
             paymentTypeCode = "2";
         }
 
-        //if(Volume ==null){
+        //if(volume ==null){
         realWeightQty = mEdtRealWeightQty.getText().toString().trim();
         meterageWeightQty = mEdtRealWeightQty.getText().toString().trim();
         //}
@@ -2945,7 +2945,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
             toastTxt("件数不能为空");
             return false;
         }
-		/*if (Integer.parseInt(Quantity) <= 19) {
+		/*if (Integer.parseInt(quantity) <= 19) {
 		} else {
 			toastTxt("件数不能大于19件");
 			return false;
@@ -2995,10 +2995,10 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
             return false;
         }
 /*		
-		if (Quantity.equals("1")) {
+		if (quantity.equals("1")) {
 			acceptInputDB.updateRank(waybillNo, sourceZoneCode, destZoneCode, custCode, consignorCompName,
 					consignorAddr, consignorPhone, consignorContName, consignorMobile, addresseeCompName,
-					addresseeAddr, addresseePhone, addresseeContName, addresseeMobile, consName, Quantity, Volume,
+					addresseeAddr, addresseePhone, addresseeContName, addresseeMobile, consName, quantity, volume,
 					realWeightQty, meterageWeightQty, consigneeEmpCode, consignedTm, paymentTypeCode,
 					settlementTypeCode, waybillFee, goodsChargeFee, chargeAgentFee, bankNo, bankType, transferDays,
 					insuranceAmount, insuranceFee, deboursFee, deboursFlag, productTypeCode, orderNo, teamCode,
@@ -3009,13 +3009,13 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 			return true;
 		}
 
-		if (Integer.parseInt(Quantity) <= 1) {
+		if (Integer.parseInt(quantity) <= 1) {
 			toastTxt("数据添加失败");
 			return false;
 		} else {
 			acceptInputDB.updateRank(waybillNo, sourceZoneCode, destZoneCode, custCode, consignorContName,
 					consignorAddr, consignorPhone, consignorContName, consignorMobile, addresseeCompName,
-					addresseeAddr, addresseePhone, addresseeContName, addresseeMobile, consName, Quantity, Volume,
+					addresseeAddr, addresseePhone, addresseeContName, addresseeMobile, consName, quantity, volume,
 					realWeightQty, meterageWeightQty, consigneeEmpCode, consignedTm, paymentTypeCode,
 					settlementTypeCode, waybillFee, goodsChargeFee, chargeAgentFee, bankNo, bankType, transferDays,
 					insuranceAmount, insuranceFee, deboursFee, deboursFlag, productTypeCode, orderNo, teamCode,

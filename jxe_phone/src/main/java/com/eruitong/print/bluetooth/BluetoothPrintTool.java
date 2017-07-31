@@ -183,12 +183,12 @@ public class BluetoothPrintTool {
 		}
 */
         String bankT = "";
-        if (!inputdatainfo.bankType.equals("0")) {
-            if (inputdatainfo.bankType.equals("1")) {
+        if (!"0".equals(inputdatainfo.bankType)) {
+            if ("1".equals(inputdatainfo.bankType)) {
                 bankT = "浦发银行";
             }
-            if (!inputdatainfo.bankType.equals("5")) {
-                if (!inputdatainfo.bankType.equals("-1") && !inputdatainfo.bankNo.isEmpty()) {
+            if (!"5".equals(inputdatainfo.bankType)) {
+                if (!"-1".equals(inputdatainfo.bankType) && !inputdatainfo.bankNo.isEmpty()) {
                 } else {
                     bankT = "无卡号";
                 }
@@ -252,10 +252,11 @@ public class BluetoothPrintTool {
      *
      * @param inputdatainfo
      * @param childList     子列表
+     * @param isLook     接受快件页面的 是否验视
      * @return true：继续执行 false:关闭显示Dialog
      */
     @SuppressWarnings("unused")
-    public static boolean xiaopiao(InputDataInfo inputdatainfo, List childList) {
+    public static boolean xiaopiao(InputDataInfo inputdatainfo, List childList, boolean isLook) {
         if (MyUtils.isEmpty(inputdatainfo.teamCode)) {
             inputdatainfo.teamCode = "";
         }
@@ -289,6 +290,10 @@ public class BluetoothPrintTool {
             zpSDK.zp_draw_text_ex(10D, 12.1D, inputdatainfo.partitionName, "宋体", 14D, 0, true, false, false);
             zpSDK.zp_draw_text_ex(28D, 12.1D, inputdatainfo.addresseeDistName, "宋体", 13D, 0, true, false, false);
             zpSDK.zp_draw_text_ex(57D, 12.1D, inputdatainfo.teamCode, "宋体", 14D, 0, false, false, false);
+        }
+
+        if (isLook) {
+            zpSDK.zp_draw_text_box(67.5D, 19D, 5D, 4D, "已验视", "宋体", 4D, 0, false, false, false);
         }
 
         zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, inputdatainfo.addresseeContName, "宋体", 5D, 0, false, false, false);
@@ -393,6 +398,10 @@ public class BluetoothPrintTool {
                 zpSDK.zp_draw_text_ex(57D, 12.1D, inputdatainfo.teamCode, "宋体", 14D, 0, false, false, false);
             }
 
+            if (isLook) {
+                zpSDK.zp_draw_text_box(67.5D, 19D, 5D, 4D, "已验视", "宋体", 4D, 0, false, false, false);
+            }
+
             zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, inputdatainfo.addresseeContName, "宋体", 5D, 0, false, false,
                     false);
             zpSDK.zp_draw_text_ex(7D, 18D, (new StringBuilder(String.valueOf(inputdatainfo.waybillNo))).append("  ")
@@ -431,7 +440,7 @@ public class BluetoothPrintTool {
             } else if (inputdatainfo.productTypeCode.equals("B3")) {
                 zpSDK.zp_draw_text_ex(51D, 46.5D, "普快", "宋体", 10D, 0, true, false, false);
             }
-			/*
+            /*
 			 * } else { zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0,
 			 * true, false, false); }
 			 */
@@ -544,8 +553,8 @@ public class BluetoothPrintTool {
                     .append(itemData.quantity).append("件 重量 ").append(itemData.meterageWeightQty).append("kg ")
                     .append("元 派件员 ").append(deliverEmpCode).toString(), "宋体", 3D, 0, true, false, false);
             zpSDK.zp_draw_text_ex(1.0D, 21.5D, (new StringBuilder("运费 ")).append(itemData.waybillFee).append("元 保价金额 " +
-                    "" + "" + "" + "" + "" + "").append(itemData.insuranceAmount).append("元 保价费 ").append(itemData
-                    .insuranceFee).append("元  ").toString(), "宋体", 3D, 0, true, false, false);
+                    "" + "" + "" + "" + "" + "" + "").append(itemData.insuranceAmount).append("元 保价费 ").append
+                    (itemData.insuranceFee).append("元  ").toString(), "宋体", 3D, 0, true, false, false);
 
             if (MyUtils.isEmpty(itemData.goodsChargeFee)) {
                 itemData.goodsChargeFee = "0.0";
@@ -639,14 +648,14 @@ public class BluetoothPrintTool {
                 itemData.fuelServiceFee = 0.0;
             }
             zpSDK.zp_draw_text_ex(1.0D, 37.5D, (new StringBuilder("签回单费 ")).append(itemData.signBackFee).append("元   " +
-                    "" + "" + "" + "" + "" + "   取件费 ").append(itemData.fuelServiceFee + "元").append("  原返费 ").append
-                    (itemData.backCargoFee == null ? "0.0" : itemData.backCargoFee + "元").toString(), "宋体", 3D, 0,
-                    true, false, false);
+                    "" + "" + "" + "" + "" + "" + "   取件费 ").append(itemData.fuelServiceFee + "元").append("  原返费 ")
+                    .append(itemData.backCargoFee == null ? "0.0" : itemData.backCargoFee + "元").toString(), "宋体",
+                    3D, 0, true, false, false);
             if (MyUtils.isEmpty(itemData.signBackNo)) {
                 itemData.signBackNo = "";
             }
             zpSDK.zp_draw_text_ex(1.0D, 41.5D, (new StringBuilder("回单号 ")).append(itemData.signBackNo).append("  收条  " +
-                    "" + "" + "" + "" + "" + " 身份证   盖章").toString(), "宋体", 3D, 0, true, false, false);
+                    "" + "" + "" + "" + "" + "" + " 身份证   盖章").toString(), "宋体", 3D, 0, true, false, false);
             if (MyUtils.isEmpty(itemData.deboursFee)) {
                 itemData.deboursFee = "0.0";
             }
@@ -938,11 +947,10 @@ public class BluetoothPrintTool {
     }
 
     /**
-     *
      * @param pdaGoodsChargePaymentList 数据
-     * @param registerName 登记人
-     * @param registerPhone 登记电话
-     * @param receiveAccount 银行卡号
+     * @param registerName              登记人
+     * @param registerPhone             登记电话
+     * @param receiveAccount            银行卡号
      * @return
      */
     public static boolean printGoodsChargeFeeEnrol(PdaGoodsChargePaymentList pdaGoodsChargePaymentList, String

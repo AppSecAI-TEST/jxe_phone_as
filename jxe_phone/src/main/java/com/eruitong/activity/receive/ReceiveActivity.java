@@ -48,8 +48,10 @@ import com.eruitong.eruitong.MyApp;
 import com.eruitong.eruitong.R;
 import com.eruitong.model.AddressList;
 import com.eruitong.model.CustList;
+import com.eruitong.model.InputDataInfo;
 import com.eruitong.model.PriceInfo;
 import com.eruitong.model.net.I_QueryCustomer;
+import com.eruitong.print.bluetooth.BluetoothPrintTool;
 import com.eruitong.print.bluetooth.BluetoothUtil;
 import com.eruitong.utils.AppManager;
 import com.eruitong.utils.DialogUtils;
@@ -401,25 +403,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
     private WaybillNoDBWrapper waybillNoDB;
     private childNoListDBWrapper childNoListDB;
 
-    /**
-     * 付款方式
-     **/
-    private String paymentTypeCode;
-    private String productTypeCode;
-    ;
-
-    /**
-     * 结算方式
-     **/
-    private String settlementTypeCode;
-
     public String biaoqianAddress;
-
-    //public Double commission;
-
-    //public Double deliverFeeCommissio;
-
-    //private Double factWaybillFee;
 
     int TYPE_METHOD;
     int ADDRESSEE_TYPE;
@@ -428,80 +412,26 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
     public String[] PROVICE_CODES = new String[]{"029", "371"};
     private ServiceProdPriceDBWrapper serviceProdPriceDB;
 
-    String addresseeAddr;
-    String addresseeCompName;
-    String addresseeContName;
-    String addresseeDistName;
-    String addresseeMobile;
-    String addresseePhone;
-    String addresseedeptCode;
-    String bankNo;
-    String bankType;
-    String consName;
-    String consignedTm;
-    String consigneeEmpCode;
-    String consignorAddr;
-    String consignorCompName;
-    String consignorContName;
-    String consignorDistName;
-    String provinceCode;
-    String consignorMobile;
-    String consignorPhone;
-    String custCode;
-    String deboursFee;
-    String deboursFlag;
-    String deliverFee;
-    String destZoneCode;
-    String destZoneName;
-    String destdistrictCode;
-    String discountExpressFee;
-    String distanceTypeCode;
-    String goodsChargeFee;
-    String inFeeRate;
-    String inputType;
-    String inputerEmpCode;
-    String insuranceAmount;
-    String insuranceFee;
-    String limitTypeCode;
-    String lockFee;
-    String meterageWeightQty;
-    String orderNo;
-    String outFeeRate;
-    String outsiteName;
-    String partitionName;
+    private InputDataInfo mInfo;
+
     PopupWindow popupWindow;
     ArrayList mCustomerSeleList;
-    String realWeightQty;
+
+    String addresseedeptCode;
+    String destdistrictCode;
+    String inFeeRate;
+    String limitTypeCode;
+    String lockFee;
+    String outFeeRate;
     String seleDestCode;
-    String signBackCount;
-    String signBackFee;
-    String signBackIdentity;
-    String signBackNo;
-    String signBackReceipt;
-    String signBackSeal;
-    String signBackSize;
-    String sourceZoneCode;
-    String sourcedistrictCode;
     StatusBox statusBox;
-    String teamCode;
     Timer timer;
-    String transferDays;
     View viewType;
-    String waitNotifyFee;
-    String chargeAgentFee;
-    String waybillFee;
     ArrayList waybillList;
-    String waybillNo;
-    String Quantity;
-    String Volume;
     String mDeptAddress;
     String mDestZoneAddress;
-    String waybillRemk;
-    String serviceTypeCode;
     String mSestdeptCode;
     String custIdentityCard;
-    Double fuelServiceFee;
-//	Double  commission = 0.0;
 
     /**
      * 品类名称
@@ -588,7 +518,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     arrayAdapter = ArrayAdapter.createFromResource(mContext, R.array.period, android.R.layout
                             .simple_spinner_item);
                     /*arrayAdapter
-							.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 					mSpnPeriod.setSelection(mPeriodSize - 1);
 					mSpnPeriod.setAdapter(arrayAdapter);*/
                     return;
@@ -602,81 +532,27 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
     }
 
     private void initData() {
+        mInfo = new InputDataInfo();
         acceptInputDB = AcceptInputDBWrapper.getInstance(getApplication());
         waybillNoDB = WaybillNoDBWrapper.getInstance(getApplication());
         childNoListDB = childNoListDBWrapper.getInstance(getApplication());
         SharedPreferences preferences = getSharedPreferences("cache_data", 0);
-        consigneeEmpCode = preferences.getString("mStaffIdTxt", "");
         mPeriodSize = getResources().getStringArray(R.array.period).length;
+        mInfo.consigneeEmpCode = preferences.getString("mStaffIdTxt", "");
 
         CONSIGNOR_TYPE = 1;
         ADDRESSEE_TYPE = 2;
         mDeptAddress = "";
-        waybillNo = "";
-        orderNo = "";
-        sourceZoneCode = "";
-        sourcedistrictCode = "";
-        destZoneCode = "";
         destdistrictCode = "";
-        custCode = "";
-        consignorCompName = "";
-        consignorAddr = "";
-        consignorPhone = "";
-        consignorContName = "";
-        consignorMobile = "";
-        addresseeCompName = "";
-        addresseeAddr = "";
-        addresseePhone = "";
-        addresseeContName = "";
         addresseedeptCode = "";
-        addresseeMobile = "";
-        realWeightQty = "";
-        meterageWeightQty = "";
-        Quantity = "";
-        Volume = "0";
-        fuelServiceFee = 0.0;
-        consignedTm = "";
-        waybillRemk = "";
-        consName = "";
-        inputType = "";
-        paymentTypeCode = "";
-        settlementTypeCode = "";
-        serviceTypeCode = "3";
-        waybillFee = "0.0";
-        goodsChargeFee = "0";
-        chargeAgentFee = "0";
-        bankNo = " ";
-        bankType = "";
-        transferDays = "";
-        insuranceAmount = "0";
-        insuranceFee = "0";
-        signBackNo = "";
-        signBackCount = "0";
-        signBackSize = "0";
-        signBackReceipt = "0";
-        signBackSeal = "0";
-        signBackIdentity = "0";
-        waitNotifyFee = "0";
-        signBackFee = "0";
-        deboursFee = "0";
-        deboursFlag = "0";
-        deliverFee = "0";
-        productTypeCode = "";
+        mInfo.serviceTypeCode = "3";
         limitTypeCode = "";
-        teamCode = "";
-        discountExpressFee = "0";
-        inputerEmpCode = "";
-        distanceTypeCode = "";
         mDestZoneAddress = "";
-        destZoneName = "";
         lockFee = "";
         outFeeRate = "";
         inFeeRate = "";
         seleDestCode = "";
-        consignorDistName = "";
-        addresseeDistName = "";
         mSestdeptCode = "";
-        outsiteName = "";
 
         mCustomerSeleList = new ArrayList();
     }
@@ -689,20 +565,21 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         if (departmentCursor.moveToNext()) {
             mSestdeptCode = departmentCursor.getString(departmentCursor.getColumnIndex("districtCode"));
             mDeptAddress = departmentCursor.getString(departmentCursor.getColumnIndex("deptAddress"));
-            sourcedistrictCode = departmentCursor.getString(departmentCursor.getColumnIndex("districtCode"));
+            mInfo.sourcedistrictCode = departmentCursor.getString(departmentCursor.getColumnIndex("districtCode"));
             lockFee = departmentCursor.getString(departmentCursor.getColumnIndex("lockFee"));
             outFeeRate = departmentCursor.getString(departmentCursor.getColumnIndex("outFeeRate"));
             String s = departmentCursor.getString(departmentCursor.getColumnIndex("typeCode"));
-            Cursor districtCursor = DistrictDBWrapper.getInstance(getApplication()).rawQueryRank(sourcedistrictCode);
+            Cursor districtCursor = DistrictDBWrapper.getInstance(getApplication()).rawQueryRank(mInfo
+                    .sourcedistrictCode);
             if (districtCursor.moveToNext()) {
-                consignorDistName = districtCursor.getString(districtCursor.getColumnIndex("distName"));
-                provinceCode = districtCursor.getString(districtCursor.getColumnIndex("provinceCode"));
+                mInfo.consignorDistName = districtCursor.getString(districtCursor.getColumnIndex("distName"));
+                mInfo.provinceCode = districtCursor.getString(districtCursor.getColumnIndex("provinceCode"));
             } else {
                 districtCursor.close();
             }
 
 			/*if ("Henansheng".equals(provinceCode)) {
-				if (s.equals("DT07")) {
+                if (s.equals("DT07")) {
 					mRbGeneral.setClickable(false);
 					mRbGeneral2.setChecked(true);
 					mRbExpress.setClickable(false);
@@ -733,8 +610,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                         mRbExpress.setClickable(true);
                     }
                 } else {
-						/*
-						 * if ("Henansheng".equals(provinceCode)) {
+                        /*
+                         * if ("Henansheng".equals(provinceCode)) {
 						 * mRbGeneral.setChecked(false);
 						 * mRbGeneral2.setClickable(false);
 						 * mRbExpress.setClickable(true); }else{
@@ -744,7 +621,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     mRbGeneral2.setClickable(true);
                     mRbExpress.setClickable(false);
                     // }
-						/*if ("Henansheng".equals(provinceCode)) {
+                        /*if ("Henansheng".equals(provinceCode)) {
 							mRbGeneral.setChecked(false);
 							mRbGeneral2.setClickable(true);
 							mRbExpress.setClickable(false);
@@ -768,20 +645,20 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             departmentCursor.close();
         }
 
-        Cursor districtCursor = DistrictDBWrapper.getInstance(getApplication()).rawQueryRank(sourcedistrictCode);
+        Cursor districtCursor = DistrictDBWrapper.getInstance(getApplication()).rawQueryRank(mInfo.sourcedistrictCode);
         if (districtCursor.moveToNext()) {
-            consignorDistName = districtCursor.getString(districtCursor.getColumnIndex("distName"));
-            provinceCode = districtCursor.getString(districtCursor.getColumnIndex("provinceCode"));
+            mInfo.consignorDistName = districtCursor.getString(districtCursor.getColumnIndex("distName"));
+            mInfo.provinceCode = districtCursor.getString(districtCursor.getColumnIndex("provinceCode"));
         } else {
             districtCursor.close();
         }
 
         serviceProdPriceDB = ServiceProdPriceDBWrapper.getInstance(getApplication());
-        sourceZoneCode = MyApp.mDeptCode;
+        mInfo.sourceZoneCode = MyApp.mDeptCode;
 
         boolean flag = true;
         // 获取主单号
-        Cursor waybillCursor = waybillNoDB.rawQueryRank(sourcedistrictCode);
+        Cursor waybillCursor = waybillNoDB.rawQueryRank(mInfo.sourcedistrictCode);
 
         int i = 0;
         do {
@@ -803,11 +680,12 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     flag = false;
                     break;
                 }
-                waybillNo = (String) waybillList.get(0);
-                mEdtWaybillNo.setText(waybillNo + "");
+                mInfo.waybillNo = (String) waybillList.get(0);
+                mEdtWaybillNo.setText(mInfo.waybillNo + "");
                 mEdtConsigneeEmpCode.setText(MyApp.mEmpCode + "");
-                Log.e("waybillNo", (new StringBuilder(String.valueOf(waybillNo))).append("|").append(i).toString());
-                waybillNoDB.deleteRank(waybillNo);
+                Log.e("waybillNo", (new StringBuilder(String.valueOf(mInfo.waybillNo))).append("|").append(i)
+                        .toString());
+                waybillNoDB.deleteRank(mInfo.waybillNo);
                 waybillList.clear();
 
                 flag = false;
@@ -842,13 +720,11 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         }
         i = 0;
         do {
-
-            String s;
             if (i >= signBackNoList.size()) {
                 isConnect();
                 return;
             }
-            signBackNo = (String) signBackNoList.get(0);
+            mInfo.signBackNo = (String) signBackNoList.get(0);
             i++;
         } while (true);
 
@@ -918,33 +794,33 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == mRbGeneral.getId()) {
-                    productTypeCode = "B2";
+                    mInfo.productTypeCode = "B2";
                     limitTypeCode = "T5";
                     mEdtWaybillFee.setFocusable(false);
                     mRbPortToPort.setEnabled(true);
                     mRbPortToDoor.setEnabled(true);
                     mRbDoorToDoor.setEnabled(false);
-                    if ("3".equals(serviceTypeCode)) {
+                    if ("3".equals(mInfo.serviceTypeCode)) {
                         mRbPortToPort.setChecked(true);
                     } else {
                         mRbPortToDoor.setChecked(true);
                     }
                     initDepartAdapter(seleDestCode);
                 } else if (checkedId == mRbGeneral2.getId()) {
-                    productTypeCode = "B3";
+                    mInfo.productTypeCode = "B3";
                     limitTypeCode = "T5";
                     mEdtWaybillFee.setFocusable(false);
                     mRbPortToPort.setEnabled(true);
                     mRbPortToDoor.setEnabled(true);
                     mRbDoorToDoor.setEnabled(false);
-                    if ("3".equals(serviceTypeCode)) {
+                    if ("3".equals(mInfo.serviceTypeCode)) {
                         mRbPortToPort.setChecked(true);
                     } else {
                         mRbPortToDoor.setChecked(true);
                     }
                     initDepartAdapter(seleDestCode);
                 } else if (checkedId == mRbExpress.getId()) {
-                    productTypeCode = "B1";
+                    mInfo.productTypeCode = "B1";
                     limitTypeCode = "T4";
                     mSpnSetterMethod.setFocusable(true);
                     mSpnSetterMethod.setClickable(true);
@@ -968,30 +844,29 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == mRbPortToPort.getId()) {
-                    serviceTypeCode = "3";
+                    mInfo.serviceTypeCode = "3";
                 } else if (checkedId == mRbPortToDoor.getId()) {
-                    serviceTypeCode = "2";
+                    mInfo.serviceTypeCode = "2";
                 } else if (checkedId == mRbDoorToDoor.getId()) {
-                    serviceTypeCode = "1";
+                    mInfo.serviceTypeCode = "1";
                 }
                 priceFee();
             }
         });
-
 
         // 付款方式
         mSpnPayMethod.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView adapterview, View view, int i, long l) {
                 if (i == 0) {
-                    paymentTypeCode = "2";
-                    if (productTypeCode.equals("B2") || productTypeCode.equals("B3")) {
+                    mInfo.paymentTypeCode = "2";
+                    if (mInfo.productTypeCode.equals("B2") || mInfo.productTypeCode.equals("B3")) {
                         mSpnSetterMethod.setFocusable(false);
                         mSpnSetterMethod.setClickable(false);
                     }
                 } else if (i == 1) {
-                    paymentTypeCode = "1";
-                    if (productTypeCode.equals("B1")) {
+                    mInfo.paymentTypeCode = "1";
+                    if (mInfo.productTypeCode.equals("B1")) {
                         mSpnSetterMethod.setFocusable(true);
                         mSpnSetterMethod.setClickable(true);
                         return;
@@ -1009,9 +884,9 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
             public void onItemSelected(AdapterView adapterview, View view, int i, long l) {
                 if (i == 0) {
-                    settlementTypeCode = "1";
+                    mInfo.settlementTypeCode = "1";
                 } else if (i == 1) {
-                    settlementTypeCode = "2";
+                    mInfo.settlementTypeCode = "2";
                     return;
                 }
             }
@@ -1047,9 +922,9 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                         return;
                     }
                     if (conPhone.length() == 11) {
-                        consignorMobile = conPhone;
+                        mInfo.consignorMobile = conPhone;
                     } else {
-                        consignorPhone = conPhone;
+                        mInfo.consignorPhone = conPhone;
                     }
                     HttpUtils httpUtils = new HttpUtils();
                     String url = MyApp.mPathServerURL + Conf.queryCustomer;
@@ -1092,33 +967,35 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                                     showT("客户信息为空");
                                     mEdtConsignorContName.setFocusableInTouchMode(true);
                                     mEdtConsignorContName.requestFocus();
-                                    custCode = "";
-                                    bankType = "-1";
-                                    bankNo = "";
+                                    mInfo.custCode = "";
+                                    mInfo.bankType = "-1";
+                                    mInfo.bankNo = "";
                                     return;
                                 }
 
                                 CustList cust = custList.get(0);
-                                consignorContName = cust.getCustName();
-                                mEdtConsignorContName.setText(consignorContName);// 寄电姓名
+                                mInfo.consignorContName = cust.getCustName();
+                                mEdtConsignorContName.setText(mInfo.consignorContName);// 寄电姓名
 
-                                custCode = cust.getCustCode();
-                                if (custCode == null || custCode.equals("null") || custCode.isEmpty()) {
-                                    custCode = "";
+                                mInfo.custCode = cust.getCustCode();
+                                if (mInfo.custCode == null || mInfo.custCode.equals("null") || mInfo.custCode.isEmpty
+                                        ()) {
+                                    mInfo.custCode = "";
                                 }
-                                mEdMonthlyNo.setText(custCode);// 订单-后
+                                mEdMonthlyNo.setText(mInfo.custCode);// 订单-后
 
-                                bankType = cust.getBankType(); // 银行卡类型
-                                if (bankType == null || bankType.equals("null") || bankType.isEmpty()) {
-                                    bankType = "-1";
-                                }
-
-                                bankNo = cust.getBankAccount();// 银行卡号
-                                if (bankNo == null || bankNo.equals("null") || bankNo.isEmpty()) {
-                                    bankNo = "";
+                                mInfo.bankType = cust.getBankType(); // 银行卡类型
+                                if (mInfo.bankType == null || mInfo.bankType.equals("null") || mInfo.bankType.isEmpty
+                                        ()) {
+                                    mInfo.bankType = "-1";
                                 }
 
-                                consignorCompName = cust.getCustCompany();
+                                mInfo.bankNo = cust.getBankAccount();// 银行卡号
+                                if (mInfo.bankNo == null || mInfo.bankNo.equals("null") || mInfo.bankNo.isEmpty()) {
+                                    mInfo.bankNo = "";
+                                }
+
+                                mInfo.consignorCompName = cust.getCustCompany();
 
                                 List<AddressList> addressList = cust.getAddressList();
                                 if (addressList == null || addressList.size() <= 0) {
@@ -1128,7 +1005,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
                                 if (addressList.size() == 1) {
                                     AddressList address = addressList.get(0);
-                                    mEdtConsignorContName.setText(consignorContName);// 寄电姓名
+                                    mEdtConsignorContName.setText(mInfo.consignorContName);// 寄电姓名
                                     mEdtConsignorAddr.setText(address.getAddress() == null ? "" : address.getAddress());
 
                                     // 收电，获取焦点
@@ -1148,7 +1025,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
                                     for (int i = 0; i < max; i++) {
                                         map = new HashMap<String, String>();
-                                        map.put("name", consignorContName);
+                                        map.put("name", mInfo.consignorContName);
                                         map.put("tel", cust.getCustMobile());
                                         String adr = addressList.get(i).getAddress();
                                         map.put("address", adr);
@@ -1156,15 +1033,12 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                                     }
                                     initControls(1);
                                 }
-
                             } else {
                                 showT(queryCustomer.getError());
                             }
                         }
                     });
-
                 }
-
             }
         });
 
@@ -1194,9 +1068,9 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     }
 
                     if (conPhone.length() == 11) {
-                        addresseeMobile = conPhone;
+                        mInfo.addresseeMobile = conPhone;
                     } else {
-                        addresseePhone = conPhone;
+                        mInfo.addresseePhone = conPhone;
                     }
                     HttpUtils httpUtils = new HttpUtils();
                     String url = MyApp.mPathServerURL + Conf.queryCustomer;
@@ -1238,18 +1112,18 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                                 }
 
                                 CustList cust = custList.get(0);
-                                addresseeContName = cust.getCustName();
-                                mEdtAddresseeContName.setText(addresseeContName);// 收电姓名
+                                mInfo.addresseeContName = cust.getCustName();
+                                mEdtAddresseeContName.setText(mInfo.addresseeContName);// 收电姓名
 
                                 if (!MyUtils.isEmpty(cust.getCustPhone())) {
-                                    addresseePhone = cust.getCustPhone();// 收电
+                                    mInfo.addresseePhone = cust.getCustPhone();// 收电
                                 }
 
                                 if (!MyUtils.isEmpty(cust.getCustMobile())) {
-                                    addresseeMobile = cust.getCustMobile();
+                                    mInfo.addresseeMobile = cust.getCustMobile();
                                 }
 
-                                addresseeCompName = cust.getCustCompany();// 收件人公司名称
+                                mInfo.addresseeCompName = cust.getCustCompany();// 收件人公司名称
 
                                 List<AddressList> addressList = cust.getAddressList();
                                 if (addressList == null || addressList.size() <= 0) {
@@ -1261,11 +1135,11 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                                 if (addressList.size() == 1) {
                                     AddressList address = addressList.get(0);
                                     mEdtAddresseeContName.setText(cust.getCustName());// 收电姓名
-                                    addresseeAddr = address.getAddress();
-                                    mEdtAddresseeAddr.setText(addresseeAddr == null ? "" : addresseeAddr);
+                                    mInfo.addresseeAddr = address.getAddress();
+                                    mEdtAddresseeAddr.setText(mInfo.addresseeAddr == null ? "" : mInfo.addresseeAddr);
 
                                     addresseedeptCode = address.getDeptCode();
-                                    teamCode = address.getTeamCode();
+                                    mInfo.teamCode = address.getTeamCode();
                                     initDestZoneCode(addresseedeptCode);
                                     mEdtQuantity.setFocusableInTouchMode(true);
                                     mEdtQuantity.requestFocus();
@@ -1293,18 +1167,14 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                                         mCustomerSeleList.add(map);
                                         addressList2 = null;
                                     }
-
                                     initControls(2);
                                 }
-
                             } else {
                                 showT(queryCustomer.getError());
                             }
                         }
                     });
-
                 }
-
             }
         });
 
@@ -1334,9 +1204,9 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String destName = mSpnDestZoneName.getSelectedItem().toString();
-                destZoneCode = (new StringBuilder(String.valueOf(destName.replaceAll("[^0-9]", "")))).append(destName
-                        .replaceAll("[^a-zA-Z]", "")).toString();
-                Cursor queryRank = DepartmentDBWrapper.getInstance(getApplication()).rawQueryRank(destZoneCode);
+                mInfo.destZoneCode = (new StringBuilder(String.valueOf(destName.replaceAll("[^0-9]", "")))).append
+                        (destName.replaceAll("[^a-zA-Z]", "")).toString();
+                Cursor queryRank = DepartmentDBWrapper.getInstance(getApplication()).rawQueryRank(mInfo.destZoneCode);
                 do {
                     if (!queryRank.moveToNext()) {
                         queryRank.close();
@@ -1345,7 +1215,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     }
                     inFeeRate = queryRank.getString(queryRank.getColumnIndex("inFeeRate"));
                 } while (true);
-
             }
 
             @Override
@@ -1373,7 +1242,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
-
             }
 
         });
@@ -1426,7 +1294,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
                     j++;
                 } while (true);
-
             }
         });
 
@@ -1451,25 +1318,25 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     return;
                 }
 
-                realWeightQty = mEdtRealWeightQty.getText().toString().trim();
+                mInfo.realWeightQty = mEdtRealWeightQty.getText().toString().trim();
                 String Volume = mEdtVolume.getText().toString().trim();
                 double1 = Double.valueOf(0.0D);
 
-                if (MyUtils.isEmpty(realWeightQty)) {
+                if (MyUtils.isEmpty(mInfo.realWeightQty)) {
                     return;
                 }
                 // 没有重量，没有体积，运费是0
-                if (MyUtils.isEmpty(realWeightQty) && TextUtils.isEmpty(Volume)) {
+                if (MyUtils.isEmpty(mInfo.realWeightQty) && TextUtils.isEmpty(Volume)) {
                     mEdtWaybillFee.setText("0");
                     return;
                 }
                 // 没有重量，有体积
-                if (MyUtils.isEmpty(realWeightQty) && !TextUtils.isEmpty(Volume)) {
+                if (MyUtils.isEmpty(mInfo.realWeightQty) && !TextUtils.isEmpty(Volume)) {
                     waybillFeeCount(Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 4500D));
                     return;
                 }
 
-                double weight = Double.parseDouble(realWeightQty);
+                double weight = Double.parseDouble(mInfo.realWeightQty);
                 // 体积为空，有重量
                 if (MyUtils.isEmpty(Volume)) {
                     waybillFeeCount(Double.valueOf(weight));
@@ -1492,7 +1359,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     waybillFeeCount(double1);
                     return;
                 }
-
             }
         });
 
@@ -1511,49 +1377,48 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
             @Override
             public void afterTextChanged(Editable s) {
-                Volume = mEdtVolume.getText().toString().trim();
-                realWeightQty = mEdtRealWeightQty.getText().toString().trim();
+                mInfo.volume = mEdtVolume.getText().toString().trim();
+                mInfo.realWeightQty = mEdtRealWeightQty.getText().toString().trim();
 
-                if (MyUtils.isEmpty(Volume)) {
+                if (MyUtils.isEmpty(mInfo.volume)) {
                     return;
                 }
 
-                if (MyUtils.isEmpty(Volume) && realWeightQty.isEmpty()) {
+                if (MyUtils.isEmpty(mInfo.volume) && mInfo.realWeightQty.isEmpty()) {
                     mEdtWaybillFee.setText("0");
                     return;
                 }
 
                 // 没有体积，有重量
-                if (MyUtils.isEmpty(Volume) && !realWeightQty.isEmpty()) {
-                    double d = Double.parseDouble(realWeightQty);
+                if (MyUtils.isEmpty(mInfo.volume) && !mInfo.realWeightQty.isEmpty()) {
+                    double d = Double.parseDouble(mInfo.realWeightQty);
                     waybillFeeCount(Double.valueOf(d));
                     return;
                 }
 
-                if (Volume.startsWith(".")) {
-                    Volume = "0" + Volume;
+                if (mInfo.volume.startsWith(".")) {
+                    mInfo.volume = "0" + mInfo.volume;
                 }
 
                 Double volume;
                 if (!distCodeType(mSestdeptCode, seleDestCode).equals("D4")) {
-                    volume = Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 4500D);
+                    volume = Double.valueOf((Double.parseDouble(mInfo.volume) * 1000000D) / 4500D);
                 } else {
-                    volume = Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 6000D);
+                    volume = Double.valueOf((Double.parseDouble(mInfo.volume) * 1000000D) / 6000D);
                 }
 
-                if (MyUtils.isEmpty(realWeightQty)) {
+                if (MyUtils.isEmpty(mInfo.realWeightQty)) {
                     waybillFeeCount(volume);
                     return;
                 }
 
                 Double double1;
-                double1 = Double.valueOf(Double.parseDouble(realWeightQty));
+                double1 = Double.valueOf(Double.parseDouble(mInfo.realWeightQty));
                 if (volume.doubleValue() >= double1.doubleValue()) {
                     waybillFeeCount(volume);
                 } else {
                     waybillFeeCount(double1);
                 }
-
             }
         });
 
@@ -1595,22 +1460,22 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             public void onItemSelected(AdapterView adapter, View view, int i, long l) {
                 String adapterview = mSpnBankType.getSelectedItem().toString();
                 if (adapterview.equals("无卡号") && i == 0) {
-                    bankType = "-1";
+                    mInfo.bankType = "-1";
                 } else {
                     if (adapterview.equals("工商银行") && i == 1) {
-                        bankType = "0";
+                        mInfo.bankType = "0";
                         return;
                     }
                     if (adapterview.equals("浦发银行") && i == 2) {
-                        bankType = "1";
+                        mInfo.bankType = "1";
                         return;
                     }
                     if (adapterview.equals("招商银行") && i == 3) {
-                        bankType = "5";
+                        mInfo.bankType = "5";
                         return;
                     }
                     if (adapterview.equals("建设银行") && i == 4) {
-                        bankType = "3";
+                        mInfo.bankType = "3";
                         return;
                     }
                 }
@@ -1645,23 +1510,21 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     charsequence = "0";
                 } else {
                     charsequence = s;
-
                 }
 
-                if (productTypeCode.equals("B1")) {
+                if (mInfo.productTypeCode.equals("B1")) {
                     double d = Double.parseDouble(charsequence);
                     double fee = Double.valueOf(d * 0.001D).doubleValue();
                     mEdtInsuranceFee.setText((MyUtils.ceil(fee)));
                     return;
                 }
 
-                if (productTypeCode.equals("B2") || productTypeCode.equals("B3")) {
+                if (mInfo.productTypeCode.equals("B2") || mInfo.productTypeCode.equals("B3")) {
                     double d1 = Double.parseDouble(charsequence);
                     double fee = Double.valueOf(d1 * 0.001D);
                     mEdtInsuranceFee.setText(MyUtils.ceil(fee));
                     return;
                 }
-
             }
 
             public void beforeTextChanged(CharSequence charsequence, int i, int j, int k) {
@@ -1701,56 +1564,45 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
     }
 
-	/*
-	 * private void setExpressText(String destDeptCode){ if(
-	 * !Arrays.asList(PROVICE_CODES).contains(sourcedistrictCode) &&
-	 * !Arrays.asList(PROVICE_CODES).contains(destDeptCode)){
-	 * mEdtWaybillFee.setFocusable(true);
-	 * mEdtWaybillFee.setFocusableInTouchMode(true); }else{
-	 * mEdtWaybillFee.setFocusable(false); } }
-	 */
-
     /**
      * 计算运费
      */
     private void priceFee() {
-        Volume = mEdtVolume.getText().toString().trim();
-        realWeightQty = mEdtRealWeightQty.getText().toString();
+        mInfo.volume = mEdtVolume.getText().toString().trim();
+        mInfo.realWeightQty = mEdtRealWeightQty.getText().toString();
 
-        if (MyUtils.isEmpty(Volume)) {
+        if (MyUtils.isEmpty(mInfo.volume)) {
             // 体积是空的
-            if (MyUtils.isEmpty(realWeightQty)) {
+            if (MyUtils.isEmpty(mInfo.realWeightQty)) {
                 // 重量是空
                 mEdtWaybillFee.setText("0");
             } else {
                 // 重量不是空
-                double d = Double.parseDouble(realWeightQty);
+                double d = Double.parseDouble(mInfo.realWeightQty);
                 waybillFeeCount(Double.valueOf(d));
             }
         } else {
             // 体积不是空
             Double volume;
             if (!distCodeType(mSestdeptCode, seleDestCode).equals("D4")) {
-                volume = Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 4500D);
+                volume = Double.valueOf((Double.parseDouble(mInfo.volume) * 1000000D) / 4500D);
             } else {
-                volume = Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 6000D);
+                volume = Double.valueOf((Double.parseDouble(mInfo.volume) * 1000000D) / 6000D);
             }
-            if (MyUtils.isEmpty(realWeightQty)) {
+            if (MyUtils.isEmpty(mInfo.realWeightQty)) {
                 // 重量是空
                 waybillFeeCount(volume);
             } else {
                 // 重量不是空
                 Double double1;
-                double1 = Double.valueOf(Double.parseDouble(realWeightQty));
+                double1 = Double.valueOf(Double.parseDouble(mInfo.realWeightQty));
                 if (volume.doubleValue() >= double1.doubleValue()) {
                     waybillFeeCount(volume);
                 } else {
                     waybillFeeCount(double1);
                 }
             }
-
         }
-
     }
 
     /**
@@ -1765,24 +1617,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         if (MyUtils.isEmpty(goodsChargeFee)) {
             charsequence = "0";
         }
-		/*String period = mSpnPeriod.getSelectedItem().toString()
-				.replaceAll("[^0-9]", "");*/
 
-
-		/*  boolean isHeNan = true;
-		  if (!"Henansheng".equals(provinceCode) ||!"1".equals(period)) {
-			if ("Henansheng".equals(provinceCode)) {
-				  chargeFee = Double.valueOf(Double.parseDouble(charsequence) / 1000);
-				  isHeNan = true;
-			} else {
-				isHeNan = false;
-				 }
-			  } else {
-				  double d =(Double.parseDouble(charsequence) * 2) / 1000;
-				  chargeFee =Double.valueOf(d); isHeNan = true;
-				  }*/
-
-        if (MyUtils.isHenan(provinceCode)) {
+        if (MyUtils.isHenan(mInfo.provinceCode)) {
             chargeFee = Double.valueOf((Double.parseDouble(charsequence) * 3) / 1000);
         } else {
             // if (!isHeNan) {
@@ -1810,7 +1646,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     propValue = serviceCursor.getString(serviceCursor.getColumnIndex("propValue"));
                 }
             } while (true);
-
         }
 
         if (chargeFee.doubleValue() > 100D) {
@@ -1827,15 +1662,13 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
      */
     private Double getVolumeWeight(Double volume) {
         if (!distCodeType(mSestdeptCode, seleDestCode).equals("D4")) {
-            return Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 4500D);
+            return Double.valueOf((Double.parseDouble(mInfo.volume) * 1000000D) / 4500D);
         } else {
-            return Double.valueOf((Double.parseDouble(Volume) * 1000000D) / 6000D);
+            return Double.valueOf((Double.parseDouble(mInfo.volume) * 1000000D) / 6000D);
         }
-
     }
 
     private void waybillFeeCount(Double double1) {
-
         DecimalFormat decimalformat = new DecimalFormat("0.00");
         if (MyUtils.isEmpty(outFeeRate)) {
             outFeeRate = "0";
@@ -1843,24 +1676,24 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         if (MyUtils.isEmpty(inFeeRate)) {
             inFeeRate = "0";
         }
-        meterageWeightQty = (new StringBuilder(String.valueOf(decimalformat.format(double1)))).toString();
+        mInfo.meterageWeightQty = (new StringBuilder(String.valueOf(decimalformat.format(double1)))).toString();
 
-        Quantity = mEdtQuantity.getText().toString().trim();
+        mInfo.quantity = mEdtQuantity.getText().toString().trim();
 
         // 根据重量计算上门费
-        if (productTypeCode.equals("B3")) {
-            fuelServiceFee = getShangmenFee(meterageWeightQty);
-            mEdtFuelService.setText(String.valueOf(fuelServiceFee));
+        if (mInfo.productTypeCode.equals("B3")) {
+            mInfo.fuelServiceFee = getShangmenFee(mInfo.meterageWeightQty);
+            mEdtFuelService.setText(String.valueOf(mInfo.fuelServiceFee));
         } else {
-            fuelServiceFee = 0.0;
+            mInfo.fuelServiceFee = 0.0;
             mEdtFuelService.setText(null);
         }
-        if (meterageWeightQty != null && !"".equals(meterageWeightQty)) {
-            double1 = Double.valueOf(Double.parseDouble(meterageWeightQty));
+        if (mInfo.meterageWeightQty != null && !"".equals(mInfo.meterageWeightQty)) {
+            double1 = Double.valueOf(Double.parseDouble(mInfo.meterageWeightQty));
         }
         Double quantity = 0.0;
-        if (Quantity != null && !"".equals(Quantity)) {
-            quantity = Double.valueOf(Double.parseDouble(Quantity));
+        if (mInfo.quantity != null && !"".equals(mInfo.quantity)) {
+            quantity = Double.valueOf(Double.parseDouble(mInfo.quantity));
         }
 
         PriceInfoList = new ArrayList();
@@ -1868,13 +1701,13 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         String seleDest = seleDestCode;
         distCodeType(sestdeptCode, seleDest);
         String productCode = "";
-        if ("B2".equals(productTypeCode) || "B3".equals(productTypeCode)) {
+        if ("B2".equals(mInfo.productTypeCode) || "B3".equals(mInfo.productTypeCode)) {
             productCode = "B2";
         }
 
         if ("C1".equals(consType)) {
             Cursor categoryCursor = CategoryDBWrapper.getInstance(getApplication()).rawQueryRank(sestdeptCode,
-                    seleDest, serviceTypeCode, consType);
+                    seleDest, mInfo.serviceTypeCode, consType);
             //System.out.println(categoryCursor.getCount());
             int i;
             i = 0;
@@ -1896,7 +1729,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
                     PriceInfo item = (PriceInfo) PriceInfoList.get(i);
 
-
                     double d = Double.parseDouble(((PriceInfo) PriceInfoList.get(i)).price);
 
                     double standardWeight = Double.parseDouble(((PriceInfo) PriceInfoList.get(i)).standardWeight);
@@ -1911,7 +1743,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             } while (true);
         } else {
             Cursor prodpriceCursor = ProdpriceDBWrapper.getInstance(getApplication()).rawQueryRank(sestdeptCode,
-                    seleDest, serviceTypeCode, "C3", limitTypeCode, "B2");
+                    seleDest, mInfo.serviceTypeCode, "C3", limitTypeCode, "B2");
             int i;
             i = 0;
             do {
@@ -1926,7 +1758,6 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                             ("weightPriceQty")));
                     PriceInfoList.add(itemdata);
                 } else {
-
                     if (!prodpriceCursor.isClosed()) {
                         prodpriceCursor.close();
                     }
@@ -1971,9 +1802,9 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         do {
             if (!queryRank.moveToNext()) {
                 queryRank.close();
-                return distanceTypeCode;
+                return mInfo.distanceTypeCode;
             }
-            distanceTypeCode = queryRank.getString(queryRank.getColumnIndex("distancetypecode"));
+            mInfo.distanceTypeCode = queryRank.getString(queryRank.getColumnIndex("distancetypecode"));
         } while (true);
     }
 
@@ -1992,27 +1823,27 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     Map map = (Map) mCustomerSeleList.get(i);
                     switch (phoneType) {
                         case 1: {// 寄电
-                            consignorAddr = (String) map.get("address");
-                            mEdtConsignorAddr.setText(consignorAddr == null ? "" : consignorAddr);
+                            mInfo.consignorAddr = (String) map.get("address");
+                            mEdtConsignorAddr.setText(mInfo.consignorAddr == null ? "" : mInfo.consignorAddr);
 
-                            consignorContName = (String) map.get("name");
-                            mEdtConsignorContName.setText(consignorContName);// 寄电姓名
+                            mInfo.consignorContName = (String) map.get("name");
+                            mEdtConsignorContName.setText(mInfo.consignorContName);// 寄电姓名
 
                             // 收电，获取焦点
                             getPhoneRequestFocus();
                             break;
                         }
                         case 2: {// 收电
-                            addresseeAddr = (String) map.get("address");
-                            mEdtAddresseeAddr.setText(addresseeAddr);
+                            mInfo.addresseeAddr = (String) map.get("address");
+                            mEdtAddresseeAddr.setText(mInfo.addresseeAddr);
 
-                            addresseeContName = (String) map.get("name");
-                            mEdtAddresseeContName.setText(addresseeContName);
+                            mInfo.addresseeContName = (String) map.get("name");
+                            mEdtAddresseeContName.setText(mInfo.addresseeContName);
 
                             String deptCode = (String) map.get("deptCode");
-                            teamCode = (String) map.get("teamCode");
-                            if (teamCode == null) {
-                                teamCode = "";
+                            mInfo.teamCode = (String) map.get("teamCode");
+                            if (mInfo.teamCode == null) {
+                                mInfo.teamCode = "";
                             }
                             initDestZoneCode(deptCode);
 
@@ -2120,7 +1951,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             s2 = districtCursor.getString(districtCursor.getColumnIndex("deptName"));
             s3 = districtCursor.getString(districtCursor.getColumnIndex("typeLevel"));
             s4 = districtCursor.getString(districtCursor.getColumnIndex("typeCode"));
-            if (s3.equals("4") && productTypeCode.endsWith("B1")) {
+            if (s3.equals("4") && mInfo.productTypeCode.endsWith("B1")) {
                 if (s4.equals("DT06") || s4.equals("DT08")) {
                     arraylist.add((new StringBuilder("[")).append(s1).append("]").append(s2).toString());
                     k = j;
@@ -2134,8 +1965,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     j = k;
                 }
 
-            } else if (s3.equals("4") && (productTypeCode.endsWith("B2") || productTypeCode.equals("B3")) &&
-                    (s4.equals("DT07") || s4.equals("DT08"))) {
+            } else if (s3.equals("4") && (mInfo.productTypeCode.endsWith("B2") || mInfo.productTypeCode.equals("B3"))
+                    && (s4.equals("DT07") || s4.equals("DT08"))) {
                 arraylist.add((new StringBuilder("[")).append(s1).append("]").append(s2).toString());
                 k = j;
                 if (addresseedeptCode.equals(s1)) {
@@ -2157,7 +1988,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         double shangmenfei = 0;
         Double weight = Double.parseDouble(w);
         DropinFeeDBWrapper dbWrapper = DropinFeeDBWrapper.getInstance(getApplication());
-        Cursor queryRank = dbWrapper.rawQueryRank(sourcedistrictCode);
+        Cursor queryRank = dbWrapper.rawQueryRank(mInfo.sourcedistrictCode);
 
         String dropinFeeId = "";
         Double baseWeightQty = 0.0;
@@ -2221,20 +2052,20 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 					mSpnPeriod.setSelection(0, true);
 				}*/
 
-                    if (!"0".equals(bankType)) {
-                        if ("1".equals(bankType)) {
+                    if (!"0".equals(mInfo.bankType)) {
+                        if ("1".equals(mInfo.bankType)) {
                             mSpnBankType.setSelection(2, true);
-                        } else if ("5".equals(bankType)) {
+                        } else if ("5".equals(mInfo.bankType)) {
                             mSpnBankType.setSelection(3, true);
-                        } else if ("3".equals(bankType)) {
+                        } else if ("3".equals(mInfo.bankType)) {
                             mSpnBankType.setSelection(4, true);
-                        } else if ("-1".equals(bankType)) {
+                        } else if ("-1".equals(mInfo.bankType)) {
                             mSpnBankType.setSelection(0, true);
                         }
                     } else {
                         mSpnBankType.setSelection(1, true);
                     }
-                    mEdtBankNo.setText(bankNo);
+                    mEdtBankNo.setText(mInfo.bankNo);
                     return;
                 } else {
                     mSpnBankType.setSelection(0, true);
@@ -2267,17 +2098,17 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     mChkDeboursFlag.setClickable(false);
                     mChkDeboursFlag.setChecked(false);
                     mEdtDeboursFee.getEditableText().clear();
-                    deboursFlag = "0";
+                    mInfo.deboursFlag = "0";
                     mEdtRemark.requestFocus();
                     return;
                 }
             }
             case R.id.chb_accept_inputorder_deboursFlag: {// 是否垫结
                 if (isChecked) {
-                    deboursFlag = "1";
+                    mInfo.deboursFlag = "1";
                     return;
                 } else {
-                    deboursFlag = "0";
+                    mInfo.deboursFlag = "0";
                     return;
                 }
             }
@@ -2352,8 +2183,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     mCkbSignBackIdentity.setFocusable(true);
                     mCkbSignBackIdentity.setClickable(true);
                     mEdtSignBackfee.setText("5");
-                    mEdtSignBackNo.setText(signBackNo);
-                    waybillNoDB.deleteRank(signBackNo);
+                    mEdtSignBackNo.setText(mInfo.signBackNo);
+                    waybillNoDB.deleteRank(mInfo.signBackNo);
                     return;
                 } else {
                     mEdtSignBackNo.setFocusable(false);
@@ -2365,15 +2196,15 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     mCkbSignBackReceipt.setFocusable(false);
                     mCkbSignBackReceipt.setClickable(false);
                     mCkbSignBackReceipt.setChecked(false);
-                    signBackReceipt = "0";
+                    mInfo.signBackReceipt = "0";
                     mCkbSignBackSeal.setFocusable(false);
                     mCkbSignBackSeal.setClickable(false);
                     mCkbSignBackSeal.setChecked(false);
-                    signBackSeal = "0";
+                    mInfo.signBackSeal = "0";
                     mCkbSignBackIdentity.setFocusable(false);
                     mCkbSignBackIdentity.setClickable(false);
                     mCkbSignBackIdentity.setChecked(false);
-                    signBackIdentity = "0";
+                    mInfo.signBackIdentity = "0";
                     mEdtSignBackNo.getEditableText().clear();
                     mEdtSignBackfee.getEditableText().clear();
                     mEdtRemark.requestFocus();
@@ -2382,28 +2213,28 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             }
             case R.id.chb_signBack_receipt: {// 签单条
                 if (isChecked) {
-                    signBackReceipt = "1";
+                    mInfo.signBackReceipt = "1";
                     return;
                 } else {
-                    signBackReceipt = "0";
+                    mInfo.signBackReceipt = "0";
                     return;
                 }
             }
             case R.id.chb_signBack_seal: {// 盖章
                 if (isChecked) {
-                    signBackSeal = "1";
+                    mInfo.signBackSeal = "1";
                     return;
                 } else {
-                    signBackSeal = "0";
+                    mInfo.signBackSeal = "0";
                     return;
                 }
             }
             case R.id.chb_signBack_identity: {// 身份证
                 if (isChecked) {
-                    signBackIdentity = "1";
+                    mInfo.signBackIdentity = "1";
                     return;
                 } else {
-                    signBackIdentity = "0";
+                    mInfo.signBackIdentity = "0";
                     return;
 
                 }
@@ -2481,19 +2312,19 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         Cursor districtCursor = DistrictDBWrapper.getInstance(ReceiveActivity.this).rawQueryRank(seleDestCode);
 
         if (districtCursor.moveToNext()) {
-            addresseeDistName = districtCursor.getString(districtCursor.getColumnIndex("distName"));
+            mInfo.addresseeDistName = districtCursor.getString(districtCursor.getColumnIndex("distName"));
         } else {
             districtCursor.close();
         }
 
-        Cursor departmentCursor = DepartmentDBWrapper.getInstance(getApplication()).rawQueryRank(destZoneCode);
+        Cursor departmentCursor = DepartmentDBWrapper.getInstance(getApplication()).rawQueryRank(mInfo.destZoneCode);
 
         if (departmentCursor.moveToNext()) {
             mDestZoneAddress = departmentCursor.getString(departmentCursor.getColumnIndex("deptAddress"));
-            partitionName = departmentCursor.getString(departmentCursor.getColumnIndex("partitionName"));
-            outsiteName = departmentCursor.getString(departmentCursor.getColumnIndex("outsiteName"));
-            if (!TextUtils.isEmpty(outsiteName) && outsiteName.length() >= 2) {
-                outsiteName = outsiteName.substring(0, 2);
+            mInfo.partitionName = departmentCursor.getString(departmentCursor.getColumnIndex("partitionName"));
+            mInfo.outsiteName = departmentCursor.getString(departmentCursor.getColumnIndex("outsiteName"));
+            if (!TextUtils.isEmpty(mInfo.outsiteName) && mInfo.outsiteName.length() >= 2) {
+                mInfo.outsiteName = mInfo.outsiteName.substring(0, 2);
             }
         } else {
             departmentCursor.close();
@@ -2524,403 +2355,24 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
     public void Print0() {
         DecimalFormat df = new DecimalFormat("#.00");
 
-        if (MyUtils.isEmpty(addresseePhone)) {
-            addresseePhone = "";
+        if (MyUtils.isEmpty(mInfo.addresseePhone)) {
+            mInfo.addresseePhone = "";
         }
-        if (MyUtils.isEmpty(goodsChargeFee)) {
-            goodsChargeFee = "0";
+        if (MyUtils.isEmpty(mInfo.goodsChargeFee)) {
+            mInfo.goodsChargeFee = "0";
         }
-        if (MyUtils.isEmpty(waitNotifyFee)) {
-            waitNotifyFee = "0";
+        if (MyUtils.isEmpty(mInfo.waitNotifyFee)) {
+            mInfo.waitNotifyFee = "0";
         }
-        if (MyUtils.isEmpty(deboursFee)) {
-            deboursFee = "0";
+        if (MyUtils.isEmpty(mInfo.deboursFee)) {
+            mInfo.deboursFee = "0";
         }
-        if (MyUtils.isEmpty(deliverFee) || "0".equals(deliverFee)) {
-            deliverFee = "0";
-            //deliverFeeCommissio = commission;
-        }/*else{
-			deliverFeeCommissio =Double.parseDouble(deliverFee) + commission;
-		}*/
-
-		/*if(waybillFee!=null){
-			factWaybillFee =  Double.valueOf(df.format(Double.parseDouble(waybillFee) - commission));
-		}*/
-
-        Double double1;
-        double1 = Double.valueOf(0.0D);
-        Object obj1 = Double.valueOf(Double.parseDouble(waybillFee) + Double.parseDouble(signBackFee) + Double
-                .parseDouble(waitNotifyFee) + Double.parseDouble(deboursFee) + Double.parseDouble(insuranceFee) + Double
-                .parseDouble(deliverFee) + fuelServiceFee);
-        double d = ((Double) (obj1)).doubleValue();
-        double d1 = Double.parseDouble(goodsChargeFee);
-        // double d2 = Double.parseDouble(deboursFee)+fuelServiceFee;
-        double1 = Double.valueOf(d + d1);
-
-        // if ("02911".equals(sourcedistrictCode)) {
-        // DecimalFormat decimalformat = new DecimalFormat("0.0");
-        // if (Double.parseDouble(meterageWeightQty) <= 5D) {
-        // shangmenFee = "4";
-        // waybillFee = (new
-        // StringBuilder(String.valueOf(decimalformat.format(Double.parseDouble(waybillFee)
-        // - Double.parseDouble(shangmenFee))))).toString();
-        // } else {
-        // Double shang = 4D + (Double.parseDouble(meterageWeightQty) - 5D) *
-        // 0.10000000000000001D;
-        // shangmenFee = new StringBuilder(MyUtils.round(shang)).toString();
-        // waybillFee = (new
-        // StringBuilder(String.valueOf(decimalformat.format(Double.parseDouble(waybillFee)
-        // - Double.parseDouble(shangmenFee))))).toString();
-        // }
-        // }
-
-        // ================================ 客户联 ================================
-
-        if (!zpSDK.zp_page_create(80D, 61D)) {
-            statusBox.Close();
-            return;
+        if (MyUtils.isEmpty(mInfo.deliverFee) || "0".equals(mInfo.deliverFee)) {
+            mInfo.deliverFee = "0";
         }
 
-        zpSDK.TextPosWinStyle = false;
-        zpSDK.zp_draw_rect(0.0D, 0.0D, 72D, 53D, 3);
-        zpSDK.zp_draw_line(0.0D, 4D, 72D, 4D, 3);
-        zpSDK.zp_draw_line(0.0D, 8D, 72D, 8D, 3);
-        zpSDK.zp_draw_line(0.0D, 12D, 72D, 12D, 3);
-        zpSDK.zp_draw_line(0.0D, 16D, 72D, 16D, 3);
-        zpSDK.zp_draw_line(0.0D, 20D, 72D, 20D, 3);
-        zpSDK.zp_draw_line(0.0D, 24D, 72D, 24D, 3);
-        zpSDK.zp_draw_line(0.0D, 28D, 72D, 28D, 3);
-        zpSDK.zp_draw_line(0.0D, 32D, 72D, 32D, 3);
-        zpSDK.zp_draw_line(0.0D, 36D, 72D, 36D, 3);
-        zpSDK.zp_draw_line(0.0D, 40D, 72D, 40D, 3);
-        zpSDK.zp_draw_line(0.0D, 45D, 72D, 44D, 3);
-        //zpSDK.zp_draw_line(0.0D, 48D, 72D, 48D, 3);
-        zpSDK.zp_draw_line(12D, 0.0D, 12D, 8D, 3);
-
-	/*	zpSDK.zp_draw_text_ex(0.9D, 3D, "聚", "宋体",
-				3D, 0, true, false, false);
-		zpSDK.zp_draw_text_ex(0.9D, 7D, "信", "宋体",
-				3D, 0, true, false, false);*/
-
-//		zpSDK.zp_draw_text_ex(1.0D, -2.0D, "JXE 聚信", "宋体",
-//				6.7999999999999998D, 0, true, true, false);
-		/*zpSDK.zp_draw_text_ex(4.0D, 3.5D, consignedTm.substring(5, 10), "宋体",
-				3D, 0, true, false, false);
-		zpSDK.zp_draw_text_ex(4.0D, 7.5D, consignedTm.substring(11, 16), "宋体",
-				3D, 0, true, false, false);*/
-        zpSDK.zp_draw_text_ex(1.0D, 3D, consignedTm.substring(5, 10), "宋体", 3D, 0, true, true, false);
-        zpSDK.zp_draw_text_ex(1.0D, 7D, consignedTm.substring(11, 16), "宋体", 3D, 0, true, true, false);
-        // if (!"02911".equals(sourcedistrictCode)) {
-
-        if (productTypeCode.equals("B1")) {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("快递  运单号")).append(waybillNo).append(" ").append
-                    (sourceZoneCode).append(" ").append(consignorContName).toString(), "宋体", 3D, 0, true, false, false);
-        } else if (productTypeCode.equals("B2")) {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普货  运单号")).append(waybillNo).append(" ").append
-                    (sourceZoneCode).append(" ").append(consignorContName).toString(), "宋体", 3D, 0, true, false, false);
-        } else if (productTypeCode.equals("B3")) {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普快  运单号")).append(waybillNo).append(" ").append
-                    (sourceZoneCode).append(" ").append(consignorContName).toString(), "宋体", 3D, 0, true, false, false);
-        }
-
-		/*
-		 * } else { zpSDK.zp_draw_text_ex(13D, 11D, (new
-		 * StringBuilder("普快  运单号")
-		 * ).append(waybillNo).append(" ").append(sourceZoneCOode).append(" ")
-		 * .append(consignorContName).toString(), "宋体", 3D, 0, true, false,
-		 * false);
-		 *
-		 * }
-		 */
-
-        if (!MyUtils.isEmpty(addresseeMobile)) {
-            if (!MyUtils.isEmpty(addresseePhone)) {
-                zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(addresseeDistName))).append(" ")
-                        .append(addresseeContName).append(" ").append(addresseeMobile).append(" 取件费  ").append
-                                (fuelServiceFee).toString(), "宋体", 3D, 0, true, false, false);
-            } else {
-                zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(addresseeDistName))).append(" ")
-                        .append(addresseeContName).append(" ").append(addresseeMobile).append(" 取件费  ").append
-                                (fuelServiceFee).toString(), "宋体", 3D, 0, true, false, false);
-            }
-        } else {
-            zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(addresseeDistName))).append(" ").append
-                            (addresseeContName).append(" ").append(addresseePhone).append(" 取件费  ").append(fuelServiceFee).toString()
-                    , "宋体", 3D, 0, true, false, false);
-        }
-
-        zpSDK.zp_draw_text_ex(1.0D, 11D, (new StringBuilder(String.valueOf(consName))).append(" ").append(Quantity)
-                        .append("件 重量").append(meterageWeightQty).append("kg 运费").append(waybillFee).append("  垫付").append(deboursFee)
-						/*.append(" 派送费").append(deliverFee)*/.toString(), "宋体", 2.7999999999999998D, 0, true, false,
-                false);
-        zpSDK.zp_draw_text_ex(1.0D, 15D, (new StringBuilder("声明价值")).append(insuranceAmount).append(" 保价费").append
-                        (insuranceFee).append("元  回单费").append(signBackFee).append(" ").append(signBackNo).toString(), "宋体", 3D, 0,
-                true, false, false);
-
-		/*if (MyUtils.isHenan(provinceCode)) {
-			zpSDK.zp_draw_text_ex(1.0D, 22.5D, "货款买方直接转给卖方", "宋体", 6D, 0, true, false, false);
-		} else {
-			zpSDK.zp_draw_text_ex(1.0D, 22.5D, "一  票   送  货  到   店  铺", "宋体", 6D, 0, true, false, false);
-		}*/
-        //zpSDK.zp_draw_text_ex(1.0D, 22.5D, "一  票   送  货   到   店  铺", "宋体", 6D, 0, true, false, false);
-
-
-        String bankT = "";
-        if (!"0".equals(bankType)) {
-            if ("1".equals(bankType)) {
-                bankT = "浦发银行";
-            }
-            if ("3".equals(bankType)) {
-                bankT = "建设银行";
-            }
-
-            if (!"5".equals(bankType)) {
-                if (!"-1".equals(bankNo) && !bankNo.isEmpty()) {
-                } else {
-                    bankT = "无卡号";
-                }
-            } else {
-                bankT = "招商银行";
-            }
-        } else {
-            bankT = "工商银行";
-        }
-
-        String s = "";
-        if (MyUtils.isHenan(provinceCode)) {
-            s = "货款";
-        } else {
-            s = "代收款";
-        }
-
-        zpSDK.zp_draw_text_ex(1.0D, 19D, (new StringBuilder(s)).append(goodsChargeFee).append(" 服务费").append
-                        (chargeAgentFee).append(" ").append(bankT).append(" ").append(" 等通知费").append(waitNotifyFee).toString(),
-                "宋体", 3D, 0, true, false, false);
-        zpSDK.zp_draw_text_ex(1.0D, 23D, (new StringBuilder("银行账号 ")).append(bankNo)/*.append(transferDays).append
-        ("天转")*/.toString(), "宋体", 3D, 0, true, false, false);
-
-        zpSDK.zp_draw_text_box(1.0D, 27.5D, 72D, 3D, "客户须知 1：货物应当申明价值， " +
-                "每件货物遗失或损毁，承运人按总保价的平均价值赔偿。2：每票总价值如果超过5万元，不予承运。3：出现异常，90天内联系处理，超期不予处理", "宋体", 2.7D, 0, true, false, false);
-
-        if (!paymentTypeCode.equals("1")) {
-            if (!paymentTypeCode.equals("2")) {
-
-            } else {
-                zpSDK.zp_draw_text_ex(1.0D, 39.5D, (new StringBuilder("到付  ")).append(double1).append("元").toString()
-                        , "宋体", 3D, 0, true, false, false);
-            }
-        } else {
-            zpSDK.zp_draw_text_ex(1.0D, 39.5D, (new StringBuilder("寄付  ")).append(obj1).append("元").toString(), "宋体",
-                    3D, 0, true, false, false);
-        }
-
-        zpSDK.zp_draw_text_ex(39.5D, 39.5D, "客服热线:", "宋体", 3D, 0, true, false, false);
-
-        zpSDK.zp_draw_text_ex(1.0D, 44D, (new StringBuilder("备注:")).append(waybillRemk).toString(), "宋体", 3D, 0,
-                true, false, false);
-
-        zpSDK.zp_draw_text_ex(45D, 44D, "签字", "宋体", 3.8D, 0, true, false, false);
-
-        zpSDK.zp_draw_text_ex(52.5D, 40D, "4008-111115", "宋体", 3.2000000000000002D, 0, true, false, false);
-        // zpSDK.zp_draw_text_ex(60.5D, 52D, "111115", "宋体",
-        // 3.2000000000000002D, 0, true, false, false);
-
-        zpSDK.zp_draw_text_ex(1.0D, 51D, (new StringBuilder(String.valueOf("派送费"))).append(" ").append(deliverFee)
-                .toString(), "宋体", 5, 0, true, false, false);
-
-        zpSDK.zp_page_print(false);
-        zpSDK.zp_page_clear();
-
-        zpSDK.zp_goto_mark_label(120);
-        zpSDK.zp_page_free();
-
-        // ================================ 标签 ================================
-
-        if (!zpSDK.zp_page_create(80D, 61D)) {
-            statusBox.Close();
-            return;
-        }
-
-        zpSDK.TextPosWinStyle = false;
-        zpSDK.zp_draw_rect(0.0D, 0.0D, 72D, 53D, 3);
-        zpSDK.zp_draw_line(0.0D, 14D, 72D, 14D, 3);
-        zpSDK.zp_draw_line(6D, 19D, 72D, 19D, 3);
-        zpSDK.zp_draw_line(6D, 24D, 72D, 24D, 3);
-        zpSDK.zp_draw_line(6D, 29D, 72D, 29D, 3);
-        zpSDK.zp_draw_line(0.0D, 34D, 72D, 34D, 3);
-        zpSDK.zp_draw_line(50D, 48D, 72D, 48D, 3);
-        zpSDK.zp_draw_line(10D, 0.0D, 10D, 14D, 3);
-        zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
-        zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
-        zpSDK.zp_draw_line(50D, 34D, 50D, 53D, 3);
-        zpSDK.zp_draw_text_ex(1.0D, 5.0D, "聚信", "宋体", 4D, 0, true, true, false);
-        zpSDK.zp_draw_text_box(1.0D, 9D, 9D, 3D, consignedTm.substring(5, 10), "宋体", 3D, 0, true, true, false);
-        zpSDK.zp_draw_text_box(1.0D, 13D, 9D, 3D, consignedTm.substring(11, 16), "宋体", 3D, 0, true, true, false);
-        if (MyUtils.isEmpty(partitionName)) {
-            // 目的地城市 + 目的地网点
-            zpSDK.zp_draw_text_ex(10D, 12D, addresseeDistName, "宋体", 12D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(33D, 12.1D, outsiteName, "宋体", 12D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(58D, 12.1D, teamCode, "宋体", 14D, 0, false, false, false);
-        } else {
-            zpSDK.zp_draw_text_ex(10D, 12.1D, partitionName, "宋体", 14D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(28D, 12.1D, addresseeDistName, "宋体", 13D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(57D, 12.1D, teamCode, "宋体", 14D, 0, false, false, false);
-        }
-
-        if (mChbIsLook.isChecked()) {
-            zpSDK.zp_draw_text_box(67.5D, 19D, 5D, 4D, "已验视", "宋体", 4D, 0, false, false, false);
-        }
-
-        zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, addresseeContName, "宋体", 5D, 0, false, false, false);
-        zpSDK.zp_draw_text_ex(7D, 18D, (new StringBuilder(String.valueOf(waybillNo))).append("  ").append
-                (sourceZoneCode).append("  ").append(consignorContName).toString(), "宋体", 4D, 0, true, false, false);
-
-        if (!MyUtils.isEmpty(addresseeMobile)) {
-            if (!MyUtils.isEmpty(addresseePhone)) {
-                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(addresseeDistName))).append
-                        (addresseePhone).append(" / ").append(addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
-            } else {
-                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(addresseeDistName))).append
-                        (addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
-
-            }
-        } else {
-            zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(addresseeDistName))).append
-                    (addresseePhone).toString(), "宋体", 4D, 0, true, false, false);
-
-        }
-
-        zpSDK.zp_draw_text_ex(7D, 28D, addresseeAddr, "宋体", 3.3999999999999999D, 0, true, false, false);
-        zpSDK.zp_draw_text_ex(7D, 33D, (new StringBuilder(String.valueOf(consName))).append("1/").append(Quantity)
-                        .append("件 重量").append(meterageWeightQty).append("kg 收件员").append(consigneeEmpCode).toString(), "宋体",
-                3.6000000000000001D, 0, true, false, false);
-
-	/*	if (!"02911".equals(sourcedistrictCode)) {
-
-			if (productTypeCode.equals("B1")) {
-				zpSDK.zp_draw_text_ex(53D, 46.5D, "快", "宋体", 14D, 0, true,
-						false, false);
-			} else if (productTypeCode.equals("B2")
-					|| productTypeCode.equals("B3")) {
-				zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0, true,
-						false, false);
-			}
-		} else {
-			zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0, true, false,
-					false);
-		}*/
-
-        if (productTypeCode.equals("B1")) {
-            zpSDK.zp_draw_text_ex(51D, 46.5D, "快递", "宋体", 10D, 0, true, false, false);
-        } else if (productTypeCode.equals("B2")) {
-            zpSDK.zp_draw_text_ex(51D, 46.5D, "普货", "宋体", 10D, 0, true, false, false);
-        } else if (productTypeCode.equals("B3")) {
-            zpSDK.zp_draw_text_ex(51D, 46.5D, "普快", "宋体", 10D, 0, true, false, false);
-        }
-
-        zpSDK.zp_draw_text_ex(52D, 52D, "4008-111115", "宋体", 3D, 0, true, false, false);
-        zpSDK.zp_draw_barcode(7D, 35D, waybillNo, zpSDK.BARCODE_TYPE.BARCODE_CODE128, 14D, 3, 0);
-        zpSDK.zp_draw_text_ex(10D, 52D, waybillNo, "宋体", 3D, 0, false, false, false);
-        zpSDK.zp_page_print(false);
-        zpSDK.zp_page_clear();
-        zpSDK.zp_goto_mark_label(120);
-        zpSDK.zp_page_free();
-
-        if (Integer.parseInt(Quantity) < 2) {
-            return;
-        }
-
-        int i = 0;
-
-        do {
-
-            if (i >= childNoList.size()) {
-                return;
-            }
-
-            if (!zpSDK.zp_page_create(80D, 61D)) {
-                statusBox.Close();
-                return;
-            }
-
-            zpSDK.TextPosWinStyle = false;
-            zpSDK.zp_draw_rect(0.0D, 0.0D, 72D, 53D, 3);
-            zpSDK.zp_draw_line(0.0D, 14D, 72D, 14D, 3);
-            zpSDK.zp_draw_line(6D, 19D, 72D, 19D, 3);
-            zpSDK.zp_draw_line(6D, 24D, 72D, 24D, 3);
-            zpSDK.zp_draw_line(6D, 29D, 72D, 29D, 3);
-            zpSDK.zp_draw_line(0.0D, 34D, 72D, 34D, 3);
-            zpSDK.zp_draw_line(50D, 48D, 72D, 48D, 3);
-            zpSDK.zp_draw_line(10D, 0.0D, 10D, 14D, 3);
-            zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
-            zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
-            zpSDK.zp_draw_line(50D, 34D, 50D, 53D, 3);
-            zpSDK.zp_draw_text_ex(1.0D, 5.0D, "聚信", "宋体", 4D, 0, true, true, false);
-            zpSDK.zp_draw_text_box(1.0D, 9D, 9D, 3D, consignedTm.substring(5, 10), "宋体", 3D, 0, true, true, false);
-            zpSDK.zp_draw_text_box(1.0D, 13D, 9D, 3D, consignedTm.substring(11, 16), "宋体", 3D, 0, true, true, false);
-            if (MyUtils.isEmpty(partitionName)) {
-                // 目的地城市 + 目的地网点
-                zpSDK.zp_draw_text_ex(10D, 12D, addresseeDistName, "宋体", 12D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(33D, 12.1D, outsiteName, "宋体", 12D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(58D, 12.1D, teamCode, "宋体", 14D, 0, false, false, false);
-            } else {
-                zpSDK.zp_draw_text_ex(10D, 12.1D, partitionName, "宋体", 14D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(28D, 12.1D, addresseeDistName, "宋体", 13D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(57D, 12.1D, teamCode, "宋体", 14D, 0, false, false, false);
-            }
-
-            if (mChbIsLook.isChecked()) {
-                zpSDK.zp_draw_text_box(67.5D, 19D, 5D, 4D, "已验视", "宋体", 4D, 0, false, false, false);
-            }
-
-            zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, addresseeContName, "宋体", 5D, 0, false, false, false);
-            zpSDK.zp_draw_text_ex(7D, 18D, (new StringBuilder(String.valueOf(waybillNo))).append("  ").append
-                    (sourceZoneCode).append("  ").append(consignorContName).toString(), "宋体", 4D, 0, true, false, false);
-
-            if (!MyUtils.isEmpty(addresseeMobile)) {
-                if (!MyUtils.isEmpty(addresseePhone)) {
-                    zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(addresseeDistName))).append
-                            (addresseePhone).append(" / ").append(addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
-                } else {
-                    zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(addresseeDistName))).append
-                            (addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
-
-                }
-            } else {
-                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(addresseeDistName))).append
-                        (addresseePhone).toString(), "宋体", 4D, 0, true, false, false);
-
-            }
-
-            zpSDK.zp_draw_text_ex(7D, 28D, addresseeAddr, "宋体", 3.3999999999999999D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(7D, 33D, (new StringBuilder(String.valueOf(consName))).append(i + 2).append("/")
-                    .append(Quantity).append("件 重量").append(meterageWeightQty).append("kg 收件员").append(consigneeEmpCode)
-                    .toString(), "宋体", 3.6000000000000001D, 0, true, false, false);
-
-            // if (!"02911".equals(sourcedistrictCode)) {
-
-            if (productTypeCode.equals("B1")) {
-                zpSDK.zp_draw_text_ex(51D, 46.5D, "快递", "宋体", 10D, 0, true, false, false);
-            } else if (productTypeCode.equals("B2")) {
-                zpSDK.zp_draw_text_ex(51D, 46.5D, "普货", "宋体", 10D, 0, true, false, false);
-            } else if (productTypeCode.equals("B3")) {
-                zpSDK.zp_draw_text_ex(51D, 46.5D, "普快", "宋体", 10D, 0, true, false, false);
-            }
-			/*
-			 * } else { zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0,
-			 * true, false, false); }
-			 */
-
-            zpSDK.zp_draw_text_ex(52D, 52D, "4008-111115", "宋体", 3D, 0, true, false, false);
-            zpSDK.zp_draw_barcode(7D, 35D, (String) childNoList.get(i), zpSDK.BARCODE_TYPE.BARCODE_CODE128, 14D, 3, 0);
-            zpSDK.zp_draw_text_ex(10D, 52D, (String) childNoList.get(i), "宋体", 3D, 0, false, false, false);
-            zpSDK.zp_page_print(false);
-            zpSDK.zp_page_clear();
-            zpSDK.zp_goto_mark_label(120);
-            zpSDK.zp_page_free();
-            i++;
-        } while (true);
-
+        BluetoothPrintTool.kehuLian(mInfo);
+        BluetoothPrintTool.xiaopiao(mInfo, childNoList, mChbIsLook.isChecked());
     }
 
 
@@ -2929,34 +2381,34 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         Double insurance;
         Double double1;
 
-        consignedTm = (new SimpleDateFormat("yyyy-MM-dd HH:mm")).format(new Date());
-        orderNo = mEdtOrderNo.getText().toString().trim();
-        consignorContName = mEdtConsignorContName.getText().toString().trim();
-        consignorAddr = mEdtConsignorAddr.getText().toString().trim();
-        addresseeContName = mEdtAddresseeContName.getText().toString().trim();
-        addresseeAddr = mEdtAddresseeAddr.getText().toString().trim();
-        Quantity = mEdtQuantity.getText().toString().trim();
-        consName = mSpnConsName.getSelectedItem().toString().trim();
-        realWeightQty = mEdtRealWeightQty.getText().toString().trim();
-        Volume = mEdtVolume.getText().toString().trim();
-        waybillFee = mEdtWaybillFee.getText().toString().trim();
+        mInfo.consignedTm = (new SimpleDateFormat("yyyy-MM-dd HH:mm")).format(new Date());
+        mInfo.orderNo = mEdtOrderNo.getText().toString().trim();
+        mInfo.consignorContName = mEdtConsignorContName.getText().toString().trim();
+        mInfo.consignorAddr = mEdtConsignorAddr.getText().toString().trim();
+        mInfo.addresseeContName = mEdtAddresseeContName.getText().toString().trim();
+        mInfo.addresseeAddr = mEdtAddresseeAddr.getText().toString().trim();
+        mInfo.quantity = mEdtQuantity.getText().toString().trim();
+        mInfo.consName = mSpnConsName.getSelectedItem().toString().trim();
+        mInfo.realWeightQty = mEdtRealWeightQty.getText().toString().trim();
+        mInfo.volume = mEdtVolume.getText().toString().trim();
+        mInfo.waybillFee = mEdtWaybillFee.getText().toString().trim();
         custIdentityCard = mEdtCustIdentityCard.getText().toString().trim();
 
         if ("C1".equals(consType)) {
-            meterageWeightQty = realWeightQty;
+            mInfo.meterageWeightQty = mInfo.realWeightQty;
         }
 
         if (!mChkChargeAgent.isChecked()) {
-            bankType = "";
-            bankNo = "";
-            transferDays = "0";
+            mInfo.bankType = "";
+            mInfo.bankNo = "";
+            mInfo.transferDays = "0";
         } else {
-            chargeAgentFee = mEdtChargeAgentFee.getText().toString().trim();
-            goodsChargeFee = mEdtGoodsChargeFee.getText().toString().trim();
-            bankNo = mEdtBankNo.getText().toString().trim();
+            mInfo.chargeAgentFee = mEdtChargeAgentFee.getText().toString().trim();
+            mInfo.goodsChargeFee = mEdtGoodsChargeFee.getText().toString().trim();
+            mInfo.bankNo = mEdtBankNo.getText().toString().trim();
             //transferDays = mSpnPeriod.getSelectedItem().toString().trim();
 
-            if (MyUtils.isEmpty(goodsChargeFee)) {
+            if (MyUtils.isEmpty(mInfo.goodsChargeFee)) {
                 showT("请填写代收费用");
                 return false;
             }
@@ -2964,92 +2416,92 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
         insurance = Double.valueOf(0.0D);
         if (mChkInsurance.isChecked()) {
-            insuranceFee = mEdtInsuranceFee.getText().toString().trim();
-            insuranceAmount = mEdtInsuranceAmount.getText().toString().trim();
+            mInfo.insuranceFee = mEdtInsuranceFee.getText().toString().trim();
+            mInfo.insuranceAmount = mEdtInsuranceAmount.getText().toString().trim();
 
-            if (MyUtils.isEmpty(insuranceAmount)) {
+            if (MyUtils.isEmpty(mInfo.insuranceAmount)) {
                 showT("请填写保价费用");
                 return false;
             }
-            if (MyUtils.isEmpty(insuranceFee) && "0".equals(insuranceFee)) {
+            if (MyUtils.isEmpty(mInfo.insuranceFee) && "0".equals(mInfo.insuranceFee)) {
                 showT("请填写保价费用");
                 return false;
             }
-            insurance = Double.valueOf(Double.parseDouble(insuranceAmount));
+            insurance = Double.valueOf(Double.parseDouble(mInfo.insuranceAmount));
         }
         if (mChkDebours.isChecked()) {
-            deboursFee = mEdtDeboursFee.getText().toString().trim();
-            if (MyUtils.isEmpty(deboursFee)) {
+            mInfo.deboursFee = mEdtDeboursFee.getText().toString().trim();
+            if (MyUtils.isEmpty(mInfo.deboursFee)) {
                 showT("请填写垫付费用");
                 return false;
             }
         } else {
-            deboursFee = "0";
+            mInfo.deboursFee = "0";
         }
         if (mCkbWaitNotifyFee.isChecked()) {
-            waitNotifyFee = mEdtWaitNotifyFee.getText().toString().trim();
+            mInfo.waitNotifyFee = mEdtWaitNotifyFee.getText().toString().trim();
         }
         if (!mCkbSignBack.isChecked()) {
-            signBackFee = "0.0";
-            signBackNo = "";
-            signBackCount = "";
-            signBackSize = "";
+            mInfo.signBackFee = "0.0";
+            mInfo.signBackNo = "";
+            mInfo.signBackCount = "";
+            mInfo.signBackSize = "";
         } else {
-            signBackFee = mEdtSignBackfee.getText().toString().trim();
-            signBackNo = mEdtSignBackNo.getText().toString().trim();
-            signBackCount = mEdtSignBackCount.getText().toString().trim();
-            signBackSize = mEdtSignBackSize.getText().toString().trim();
+            mInfo.signBackFee = mEdtSignBackfee.getText().toString().trim();
+            mInfo.signBackNo = mEdtSignBackNo.getText().toString().trim();
+            mInfo.signBackCount = mEdtSignBackCount.getText().toString().trim();
+            mInfo.signBackSize = mEdtSignBackSize.getText().toString().trim();
         }
 
-        waybillRemk = mEdtRemark.getText().toString().trim();
+        mInfo.waybillRemk = mEdtRemark.getText().toString().trim();
         double1 = Double.valueOf(0.0D);
         if (mCkbDeliver.isChecked()) {
-            deliverFee = mEdtDeliverFee.getText().toString().trim();
-            if (MyUtils.isEmpty(deliverFee)) {
+            mInfo.deliverFee = mEdtDeliverFee.getText().toString().trim();
+            if (MyUtils.isEmpty(mInfo.deliverFee)) {
                 showT("请输入派送费");
                 return false;
             }
-            double1 = Double.valueOf(Double.parseDouble(deliverFee));
+            double1 = Double.valueOf(Double.parseDouble(mInfo.deliverFee));
         } else {
-            deliverFee = "0";
+            mInfo.deliverFee = "0";
         }
-        if (TextUtils.isEmpty(waybillNo)) {
+        if (TextUtils.isEmpty(mInfo.waybillNo)) {
             MyUtils.showText(mContext, "运单号不能为空");
             return false;
         }
 
-        if (MyUtils.isEmpty(consigneeEmpCode)) {
+        if (MyUtils.isEmpty(mInfo.consigneeEmpCode)) {
             toastTxt("收件员工号不能为空");
             return false;
         }
-        if (MyUtils.isEmpty(consignorPhone) && MyUtils.isEmpty(consignorMobile)) {
+        if (MyUtils.isEmpty(mInfo.consignorPhone) && MyUtils.isEmpty(mInfo.consignorMobile)) {
             toastTxt("寄件方电话不能为空");
             return false;
         }
-        if (MyUtils.isEmpty(consignorContName)) {
+        if (MyUtils.isEmpty(mInfo.consignorContName)) {
             toastTxt("寄件人不能为空");
             return false;
         }
-        if (MyUtils.isEmpty(consignorAddr) || consignorAddr.length() <= 2) {
+        if (MyUtils.isEmpty(mInfo.consignorAddr) || mInfo.consignorAddr.length() <= 2) {
             toastTxt("寄件地址不能为空或小于2个字");
             return false;
         }
-        if (!MyUtils.isEmpty(destZoneCode) || !MyUtils.isEmpty(destZoneCode)) {
+        if (!MyUtils.isEmpty(mInfo.destZoneCode) || !MyUtils.isEmpty(mInfo.destZoneCode)) {
         } else {
             toastTxt("目的地代码不能为空");
             return false;
         }
-        if (MyUtils.isEmpty(addresseePhone) && MyUtils.isEmpty(addresseeMobile)) {
+        if (MyUtils.isEmpty(mInfo.addresseePhone) && MyUtils.isEmpty(mInfo.addresseeMobile)) {
             toastTxt("收件方电话不能为空");
             return false;
         }
 
-        if (MyUtils.isEmpty(addresseeContName)) {
+        if (MyUtils.isEmpty(mInfo.addresseeContName)) {
             toastTxt("收件人不能为空");
             return false;
         }
 
-        if (MyUtils.isEmpty(addresseeAddr) || addresseeAddr.length() <= 2) {
+        if (MyUtils.isEmpty(mInfo.addresseeAddr) || mInfo.addresseeAddr.length() <= 2) {
             toastTxt("收件地址不能为空或小于2个字");
             return false;
         }
@@ -3059,16 +2511,17 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             toastTxt("保价费为必选项");
             return false;
         }
-        if (MyUtils.isEmpty(insuranceAmount)) {
+        if (MyUtils.isEmpty(mInfo.insuranceAmount)) {
             toastTxt("保价费不能为空");
             return false;
         }
-        if (!productTypeCode.equals("B1") || insurance.doubleValue() <= 50000D) {
+        if (!mInfo.productTypeCode.equals("B1") || insurance.doubleValue() <= 50000D) {
         } else {
             toastTxt("保价费不能大于50000元");
             return false;
         }
-        if ((!productTypeCode.equals("B2") && !productTypeCode.equals("B3")) || insurance.doubleValue() <= 50000D) {
+        if ((!mInfo.productTypeCode.equals("B2") && !mInfo.productTypeCode.equals("B3")) || insurance.doubleValue()
+                <= 50000D) {
         } else {
             toastTxt("保价费不能大于50000元");
             return false;
@@ -3079,52 +2532,51 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         // return false;
         // }
         if (!mChkInsurance.isChecked() || !mChkChargeAgent.isChecked() || insurance.doubleValue() >= Double
-                .parseDouble(goodsChargeFee)) {
+                .parseDouble(mInfo.goodsChargeFee)) {
         } else {
             toastTxt("声明价值不能小于代收");
             return false;
         }
-        if (!mChkDebours.isChecked() || Double.parseDouble(deboursFee) <= 50D) {
+        if (!mChkDebours.isChecked() || Double.parseDouble(mInfo.deboursFee) <= 50D) {
         } else {
             toastTxt("垫付不能大于50");
             return false;
         }
-        if (!TextUtils.isEmpty(realWeightQty) || !TextUtils.isEmpty(Volume)) {
+        if (!TextUtils.isEmpty(mInfo.realWeightQty) || !TextUtils.isEmpty(mInfo.volume)) {
         } else {
             toastTxt("重量或体积至少一个不为空");
             return false;
         }
-        if (TextUtils.isEmpty(Quantity)) {
+        if (TextUtils.isEmpty(mInfo.quantity)) {
             toastTxt("件数不能为空");
             return false;
         }
-	/*	if (Integer.parseInt(Quantity) <= 19) {
+	/*	if (Integer.parseInt(quantity) <= 19) {
 		} else {
 			toastTxt("件数不能大于19件");
 			return false;
 		}*/
-        if (!MyUtils.isEmpty(waybillFee) && !waybillFee.equals("0")) {
+        if (!MyUtils.isEmpty(mInfo.waybillFee) && !mInfo.waybillFee.equals("0")) {
         } else {
             toastTxt("运费不能为空");
             return false;
         }
 
-        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(signBackFee)) {
+        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(mInfo.signBackFee)) {
         } else {
             toastTxt("请输入签回单费");
             return false;
         }
-        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(signBackNo)) {
+        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(mInfo.signBackNo)) {
         } else {
             toastTxt("签回单号不能为空");
             return false;
         }
-        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(signBackCount)) {
+        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(mInfo.signBackCount)) {
         } else {
             toastTxt("返单份数不能为空");
             return false;
-        }
-        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(signBackSize)) {
+        } if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(mInfo.signBackSize)) {
         } else {
             toastTxt("返单张数不能为空");
             return false;
@@ -3139,39 +2591,23 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             toastTxt("派送费不能为空");
             return false;
         }
-        if (productTypeCode.equals("B3") && (fuelServiceFee.doubleValue() == 0 || fuelServiceFee == null)) {
+        if (mInfo.productTypeCode.equals("B3") && (mInfo.fuelServiceFee.doubleValue() == 0 || mInfo.fuelServiceFee == null)) {
             toastTxt("上门费不能为空");
             return false;
         }
 		/*if(destZoneCode!=null && productTypeCode!=null&&meterageWeightQty!=null){
 			queryDeliverCommission();
 		}*/
-        if (Quantity.equals("1")) {
-            acceptInputDB.insertRank(waybillNo, sourceZoneCode, destZoneCode, custCode, consignorCompName,
-                    consignorAddr, consignorPhone, consignorContName, consignorMobile, addresseeCompName, addresseeAddr,
-                    addresseePhone, addresseeContName, addresseeMobile, consName, Quantity, Volume, realWeightQty,
-                    meterageWeightQty, consigneeEmpCode, consignedTm, paymentTypeCode, settlementTypeCode, waybillFee,
-                    goodsChargeFee, chargeAgentFee, bankNo, bankType, transferDays, insuranceAmount, insuranceFee,
-                    deboursFee, deboursFlag, productTypeCode, orderNo, teamCode, discountExpressFee, MyApp.mEmpCode,
-                    distanceTypeCode, MyApp.mEmpName, "02", "4", 0, signBackFee, signBackNo, signBackCount, signBackSize,
-                    signBackReceipt, signBackSeal, signBackIdentity, waitNotifyFee, deliverFee, waybillRemk, serviceTypeCode,
-                    custIdentityCard, fuelServiceFee, consType);
+        if (mInfo.quantity.equals("1")) {
+            acceptInputDB.insertRank(mInfo, MyApp.mEmpCode, MyApp.mEmpName, "02", "4", 0, custIdentityCard, consType);
             return true;
         }
 
-        if (Integer.parseInt(Quantity) <= 1) {
+        if (Integer.parseInt(mInfo.quantity) <= 1) {
             toastTxt("数据添加失败");
             return false;
         } else {
-            acceptInputDB.insertRank(waybillNo, sourceZoneCode, destZoneCode, custCode, consignorContName,
-                    consignorAddr, consignorPhone, consignorContName, consignorMobile, addresseeCompName, addresseeAddr,
-                    addresseePhone, addresseeContName, addresseeMobile, consName, Quantity, Volume, realWeightQty,
-                    meterageWeightQty, consigneeEmpCode, consignedTm, paymentTypeCode, settlementTypeCode, waybillFee,
-                    goodsChargeFee, chargeAgentFee, bankNo, bankType, transferDays, insuranceAmount, insuranceFee,
-                    deboursFee, deboursFlag, productTypeCode, orderNo, teamCode, discountExpressFee, MyApp.mEmpCode,
-                    distanceTypeCode, MyApp.mEmpName, "02", "4", 0, signBackFee, signBackNo, signBackCount, signBackSize,
-                    signBackReceipt, signBackSeal, signBackIdentity, waitNotifyFee, deliverFee, waybillRemk, serviceTypeCode,
-                    custIdentityCard, fuelServiceFee, consType);
+            acceptInputDB.insertRank(mInfo, MyApp.mEmpCode, MyApp.mEmpName, "02", "4", 0, custIdentityCard, consType);
         }
         int i = 0;
 
@@ -3180,79 +2616,13 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             if (i >= childNoList.size()) {
                 return true;
             }
-            childNoListDB.insertRank(waybillNo, (String) childNoList.get(i), (new StringBuilder(String.valueOf(i)))
-                    .toString(), 0);
+            childNoListDB.insertRank(mInfo.waybillNo, (String) childNoList.get(i), (new StringBuilder(String.valueOf
+                    (i))).toString(), 0);
             waybillNoDB.deleteRank((String) childNoList.get(i));
             i++;
         } while (true);
 
     }
-
-    /**
-     * 查询单号
-     **/
-	/*private void queryDeliverCommission() {
-
-		if(meterageWeightQty==null||destZoneCode == null || productTypeCode ==null){
-			return ;
-		}
-
-		if (MyUtils.isNetworkConnect(ReceiveActivity.this)) {
-			HttpUtils httpUtils = new HttpUtils();
-			RequestParams params = new RequestParams();
-			params.addBodyParameter("meterageWeightQty", inputDataInfo.meterageWeightQty);
-			params.addBodyParameter("deptCode", inputDataInfo.destZoneCode);
-			params.addBodyParameter("productTypeCode", inputDataInfo.productTypeCode);
-
-			StringBuilder builder = new StringBuilder();
-			builder.append("?").append("meterageWeightQty=").append(meterageWeightQty).append("&")
-			.append("deptCode=").append(destZoneCode).append("&").append("productTypeCode=").append(productTypeCode);
-			String url = MyApp.mPathServerURL
-					+ Conf.queryDeliverCommission
-					+builder.toString();
-			// http://copserver.jx-express.cn/jxe-cop/pda/queryWaybillByList.action?waybillNo=029143685850
-			// http://copserver.jx-express.cn/jxe-cop/pda/queryWaybillByList
-			.action?waybillNo=029143685850&devId=865372022551524
-			httpUtils.send(HttpMethod.GET, url,
-					new RequestCallBack<String>() {
-
-						@Override
-						public void onFailure(HttpException arg0,String arg1) {
-							showT("网络异常，请稍候再试");
-							commission = 0.0;
-						}
-
-						@Override
-						public void onSuccess(ResponseInfo<String> arg0) {
-							String result = arg0.result;
-							Gson gson = new Gson();
-							I_Send i_Send = gson.fromJson(result,I_Send.class);
-
-							if (i_Send == null|| i_Send.getCommission()==null) {
-								commission = 0.0;
-								return;
-							}
-
-							if (i_Send.success) {
-								commission = i_Send.getCommission();
-
-							} else {
-								Toast.makeText(
-										ReceiveActivity.this,
-										i_Send.error);
-								System.out.println("**************4");
-
-							}
-						}
-
-					});
-
-		} else {
-			Toast.makeText(ReceiveActivity.this,
-					"无网络连接，请稍后再试");
-		}
-	}
-*/
 
     private void toastTxt(String s) {
         showT(s);
