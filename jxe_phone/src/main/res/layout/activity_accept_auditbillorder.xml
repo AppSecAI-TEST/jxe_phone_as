@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu_background" >
+
+    <TextView
+        android:id="@+id/edt_accept_inputorder_include"
+        android:layout_width="fill_parent"
+        android:layout_height="30.0dip"
+        android:background="@drawable/layout_menu_top"
+        android:gravity="center"
+        android:textColor="@color/black" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_below="@+id/edt_accept_inputorder_include"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+        <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/enrol_waybillNo_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="运单号:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_edit_waybillNo"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:ems="10"
+            android:inputType="number" /> 
+            
+        <Button
+            android:id="@+id/query_btn"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/btn_selector"
+            android:text="查询" />
+    </LinearLayout>
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <TableRow
+                    android:id="@+id/tableRow5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="目的"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_destZoneCode_code"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_input_normal"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_destZoneCode_name"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:layout_weight="2.0"
+                        android:background="@drawable/edt_input_normal"
+                         android:inputType="text" />
+                </TableRow>
+               
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运单"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_waybillNo"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="2.0"
+                        android:background="@drawable/edt_input_normal"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_consigneeEmpCode"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_input_normal"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="text" />
+                </TableRow>
+
+             <TableRow
+                    android:id="@+id/tableRow15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="付款"
+                        android:textColor="@color/black" />
+
+                    <Spinner
+                        android:id="@+id/spn_accept_inputorder_payMethod"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/spinner_click_selector"
+                        android:gravity="center"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="结算"
+                        android:textColor="@color/black" />
+
+                    <Spinner
+                        android:id="@+id/spn_accept_inputorder_settlemethed"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/spinner_click_selector"
+                        android:gravity="center"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="寄电"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_consignorPhone"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="2.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:inputType="phone" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_consignorContName"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:inputType="text" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="寄址"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_consignorAddr"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:singleLine="true" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收电"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_addresseePhone"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="2.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:inputType="phone" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_addresseeContName"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:inputType="text" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收址"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_addresseeAddr"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:singleLine="true" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:gravity="center_vertical" >
+
+                <LinearLayout
+                    android:id="@+id/tableRow6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="货名"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_consName"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="件数"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_quantity"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tableRow7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="重量"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_realWeightQty"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="6" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="体积"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_volume"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:maxLength="8" />
+                </LinearLayout>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运费"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/edt_accept_inputorder_waybillFee"
+                    android:layout_width="0.0dip"
+                    android:layout_height="40.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/edt_logininput_selector"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上门费"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/edt_accept_inputorder_shangmenFee"
+                    android:layout_width="0.0dip"
+                    android:layout_height="40.0dip"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/edt_logininput_selector"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="number"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayout3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.0dip"
+                android:gravity="center_vertical" >
+
+                <LinearLayout
+                    android:id="@+id/tableRow9"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <CheckBox
+                        android:id="@+id/chb_accept_inputorder_chargeAgent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="代收"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_goodsChargeFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="费用"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_chargeAgentFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <TableRow
+                    android:id="@+id/tableRow10"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5.0dip"
+                    android:layout_marginRight="5.0dip"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <Spinner
+                        android:id="@+id/spn_accept_inputorder_bankType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:background="@drawable/spinner_click_selector"
+                        android:gravity="center" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_bankNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+
+                    <Spinner
+                        android:id="@+id/spn_accept_inputorder_period"
+                        android:layout_width="36.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:background="@drawable/spinner_click_selector"
+                        android:gravity="center" />
+                </TableRow>
+
+                <LinearLayout
+                    android:id="@+id/tableRow11"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center_vertical" >
+
+                    <CheckBox
+                        android:id="@+id/chb_accept_inputorder_insurance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="保价"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_insuranceAmount"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="费用"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_insuranceFee"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tableRow14"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5.0dip"
+                    android:gravity="center_vertical" >
+
+                    <CheckBox
+                        android:id="@+id/chb_accept_inputorder_debours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="垫付"
+                        android:textColor="@color/black"/>
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_deboursFee"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <CheckBox
+                        android:id="@+id/chb_accept_inputorder_deboursFlag"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_weight="1.2"
+                        android:text="是否垫结"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayout4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayout20"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/chb_deliverFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="派送"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_deliverFee"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <CheckBox
+                        android:id="@+id/chb_waitNotifyFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="等通知"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_waitNotifyFee"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout16"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/chb_signBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="签回单"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_signBackFee"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="回单号"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_signBackNo"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="2.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tableRow18"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="返单份"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_signBackCount"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="返单张"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_signBackSize"
+                        android:layout_width="0.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:ems="10"
+                        android:inputType="number" />
+                </LinearLayout>
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/tableLayout5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.0dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayout19"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/chb_signBack_receipt"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="签单条"
+                        android:textColor="@color/black" />
+
+                    <CheckBox
+                        android:id="@+id/chb_signBack_seal"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="盖章"
+                        android:textColor="@color/black" />
+
+                    <CheckBox
+                        android:id="@+id/chb_signBack_identity"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="身份证"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="备注"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edt_accept_inputorder_remark"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="5.0dip"
+                        android:background="@drawable/edt_logininput_selector"
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </TableLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10.0dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_accept_inputorder_next"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="保存" />
+
+        <Button
+            android:id="@+id/btn_accept_inputorder_savePrint"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="保存打印" />
+    </LinearLayout>
+
+</RelativeLayout>

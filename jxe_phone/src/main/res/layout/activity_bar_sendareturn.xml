@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/base_title" />
+
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:text="运单号:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edt_sendAreturn_waybillNo"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@drawable/edt_bg_selector"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sendpieces_sign_table_height"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <LinearLayout
+            android:id="@+id/lin_header_content"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#cccccc" />
+
+            <com.eruitong.view.SyncHorizontalScrollView
+                android:id="@+id/header_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sendpieces_sign_table_height"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:id="@+id/lin_year_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sendpieces_sign_table_height"
+                    android:orientation="horizontal" >
+		
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_endAreturn_waybillNo"
+            android:layout_width="120dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="运单号" />
+                  
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_endAreturn_opertypecode"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="操作类型" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+                </LinearLayout>
+            </com.eruitong.view.SyncHorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cccccc" />
+
+    <ScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/lin_data_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.eruitong.view.SyncHorizontalScrollView
+                android:id="@+id/data_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+
+                <com.eruitong.view.NoscrollListView
+                    android:id="@+id/list_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+            </com.eruitong.view.SyncHorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" >
+
+                <ImageView
+                    android:id="@+id/image_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_push_data"
+            android:layout_width="60.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/btn_selector"
+            android:text="提交" />
+    </LinearLayout>
+
+</LinearLayout>

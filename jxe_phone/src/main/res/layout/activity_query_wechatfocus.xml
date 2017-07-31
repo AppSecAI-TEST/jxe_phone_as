@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/base_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="起始日期:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/query_wechatFocus_startdate"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginRight="25px"
+            android:background="@drawable/edt_logininput_selector"
+            android:ems="10"
+            android:focusable="false" />
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="结束日期:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/query_wechatFocus_enddate"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginRight="25px"
+            android:background="@drawable/edt_logininput_selector"
+            android:ems="10"
+            android:focusable="false" />
+    </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+            
+        <Button
+            android:id="@+id/query_btn"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/btn_selector"
+            android:text="查询" />
+        
+          <TextView
+                android:id="@+id/item_incomeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+  				android:textColor="#FF0000"
+  				android:layout_marginTop="7dp"
+  				android:text="*查询本网点微信关注的总人数" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共关注:"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/query_wechatfocust_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/query_number"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+		android:layout_marginTop="10dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

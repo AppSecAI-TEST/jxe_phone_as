@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <!-- 定义实心颜色，也就是填充颜色值 -->
+
+    <solid android:color="#00000000" />
+
+</shape>

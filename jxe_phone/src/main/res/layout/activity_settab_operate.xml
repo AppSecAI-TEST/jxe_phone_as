@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择地址" />
+
+        <Spinner
+            android:id="@+id/set_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/set_txt_addree"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edt_input"
+        android:focusable="false"
+        android:gravity="center"
+        android:text="选择地址" />
+
+    <!-- 员工号 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.收派员工号是" />
+
+        <TextView
+            android:id="@+id/set_txt_staffid"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/edt_txt_bg_selector"
+            android:gravity="center"
+            android:padding="3dp" />
+    </LinearLayout>
+
+    <!-- 自动上传时间 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.自动上传时间间隔是" />
+
+        <TextView
+            android:id="@+id/set_txt_auto_upload"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edt_txt_bg_selector"
+            android:gravity="center"
+            android:padding="3dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分钟" />
+    </LinearLayout>
+
+    <!-- 删除N天前的数据 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.删除" />
+
+        <TextView
+            android:id="@+id/set_txt_delete_data"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edt_txt_bg_selector"
+            android:gravity="center"
+            android:padding="3dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="天前的数据库信息！" />
+    </LinearLayout>
+
+    <!-- 清空数据信息 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.清空数据信息！" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/set_btn_delete_data"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_selector"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="全部删除" />
+    </LinearLayout>
+
+</LinearLayout>

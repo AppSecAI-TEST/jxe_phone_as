@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/lin_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sendpieces_sign_table_height"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_bar_opertypecode"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="操作类型" />
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_locked_carno"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/bule"
+            android:text="车牌号" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_locked_lockedcarcode"
+            android:layout_width="120dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="封车码" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cccccc" />
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/print_btn_no_off"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="@string/open" />
+
+        <Button
+            android:id="@+id/print_btn_search"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="搜索设备" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginLeft="10dp"
+        android:text="搜索到设备" />
+
+    <ListView
+        android:id="@+id/print_lst"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text1"
+        android:layout_marginBottom="10.0dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:footerDividersEnabled="true" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/print_btn_save"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="保存标签" />
+
+        <Button
+            android:id="@+id/print_btn_test"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="测试" />
+    </LinearLayout>
+
+</RelativeLayout>

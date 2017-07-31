@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">聚信快递</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login_txt_name">用户</string>
+    <string name="login_txt_password">密码</string>
+    <string name="exit">退出</string>
+    <string name="login_titil_name">登录</string>
+    <string name="back">返回</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确认</string>
+    <string name="exit_app_tishi">您确定要退出吗？</string>
+    <string name="open">开启</string>
+    <string name="save_succsee">保存成功</string>
+    <string name="net_error">网络错误，请检查网络连接</string>
+
+    <string-array name="http_path">
+        <item>http://copserver.jx-express.cn/jxe-cop</item>
+        <item>http://124.115.26.70/jxe-cop</item>
+        <item>http://192.168.0.104:8087/jxe-cop</item>
+         
+    </string-array>
+    <string-array name="updata_waybill">
+        <item>运单号</item>
+    </string-array>
+    <string-array name="updata_base">
+        <item>行政区域</item>
+        <item>网点部门</item>
+        <item>员工</item>
+        <item>线路编码</item>
+        <item>价格</item>
+        <item>地区间关系</item>
+        <item>增值服务</item>
+        <item>原因代码</item>
+        <item>上门费</item>
+        <item>特殊品类</item>
+    </string-array>
+    <string-array name="upload_info">
+        <item>收件录单</item>
+    </string-array>
+    <string-array name="pay_method">
+        <item>到付</item>
+        <item>寄付</item>
+    </string-array>
+    <string-array name="setter_method">
+        <item>现结</item>
+        <item>月结</item>
+    </string-array>
+    <string-array name="cons_name">
+        <item>服装</item>
+        <item>鞋</item>
+        <item>布</item>
+        <item>配件</item>
+        <item>电器</item>
+        <item>日化</item>
+        <item>电线</item>
+        <item>百货</item>
+        <item>药品</item>
+        <item>数码</item>
+        <item>资料</item>
+    </string-array>
+    <string-array name="category_code">
+        <item>标准件</item>
+        <item>标准鞋</item>
+    </string-array>
+    <string-array name="bank_type">
+        <item>无卡号</item>
+        <item>工商银行</item>
+        <item>浦发银行</item>
+        <item>招商银行</item>
+        <item>建设银行</item>
+    </string-array>
+    <string-array name="period">
+        <item>1</item>
+        <item>3</item>
+        <item>7</item>
+        <item>15</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="upload">
+        <item>收件录单</item>
+    </string-array>
+    <string-array name="groupNo">
+       <!--  <item>1</item> -->
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="genusGroup">
+        <item>第一组</item>
+        <item>第二组</item>
+        <item>第三组</item>
+        <item>第四组</item>
+        <item>第五组</item>
+        <item>第六组</item>
+        <item>第七组</item>
+        <item>第八组</item>
+        <item>第九组</item>
+        <item>第十组</item>
+    </string-array>
+    <string name="title_activity_added_value">AddedValueActivity</string>
+
+</resources>

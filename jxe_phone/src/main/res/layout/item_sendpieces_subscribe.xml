@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/lin_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sendpieces_sign_table_height"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/item_query_order_noticed"
+            android:layout_width="32dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:button="@drawable/checkbox_style"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_empCode"
+            android:layout_width="70dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="收件人" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_phone"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/bule"
+            android:text="电话" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_name"
+            android:layout_width="70dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="货物名" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_allmoney"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="合计" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_quantity"
+            android:layout_width="40dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="件数" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_weight"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="重量" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/item_query_order_sender"
+            android:layout_width="70dp"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="发件人" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="@dimen/sendpieces_sign_table_height"
+            android:background="#cccccc" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cccccc" />
+
+</LinearLayout>

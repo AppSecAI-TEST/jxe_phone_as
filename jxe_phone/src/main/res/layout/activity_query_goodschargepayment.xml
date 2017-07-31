@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/base_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/payment_waybillNo_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="运单号:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_waybillNo"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:ems="10"
+            android:inputType="number" /> 
+            
+        <Button
+            android:id="@+id/query_btn"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/btn_selector"
+            android:text="查询" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_consignorContName_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="寄件人:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_consignorContName"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+			android:editable="false"
+			android:focusable="false"
+            android:textColor="@color/gray" />
+         <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical" />
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_consignorPhone_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:text="寄件电话:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_consignorPhone"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+            android:editable="false"
+            android:focusable="false"
+            android:textColor="@color/gray" />
+         <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_goodsChargeFee_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:text="代收货款:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_goodsChargeFee"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+            android:editable="false"
+            android:focusable="false"
+            android:textColor="@color/gray" />
+        
+          <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical" />
+       
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_chargeserviceFee_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:text="代收服务费:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_chargeserviceFee"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+            android:editable="false"
+            android:focusable="false"
+            android:textColor="@color/gray" />
+        
+          <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical" />
+       
+    </LinearLayout>
+      
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_registerName_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="登记人:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_registerName"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+            android:editable="false"
+            android:focusable="false"
+            android:textColor="@color/black" 
+            android:inputType="text"/>
+        
+          <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical" />
+       
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_registerPhone_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:text="登记电话:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_registerPhone"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+            android:editable="false"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:inputType="phone" />
+        
+          <LinearLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical" />
+       
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/payment_bankAccount_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:text="银行卡号:"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/item_payment_bankAccount"
+            android:layout_width="0.0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2.0dip"
+            android:layout_weight="1.0"
+            android:editable="false"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:inputType="phone" />
+        
+          <Spinner
+      		 android:id="@+id/spn_accept_inputorder_bankType"
+             android:layout_width="wrap_content"
+             android:layout_height="40.0dip"
+             android:editable="false"
+             android:focusable="false"
+             android:background="@drawable/spinner_click_selector"
+             android:gravity="center" />
+    </LinearLayout>
+   
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+        
+        <Button
+            android:id="@+id/updata_btn_ok"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="5.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_selector"
+            android:text="转  款" 
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+<ListView android:id="@+id/listView1" android:layout_width="fill_parent" android:layout_height="156dp" android:layout_weight="0.29"></ListView>
+<TableRow android:layout_width="fill_parent" android:id="@+id/tableRow1" android:layout_height="20dp"></TableRow>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1">
+    <Button android:layout_height="wrap_content" android:text="页面打印" android:layout_width="wrap_content" android:id="@+id/button1" android:layout_marginRight="10dip"></Button>
+    <Button android:layout_height="wrap_content" android:text="旋转页面" android:layout_width="wrap_content" android:id="@+id/button2" android:layout_marginRight="10dip"></Button>
+    <Button android:layout_height="wrap_content" android:text="条码打印" android:layout_width="wrap_content" android:id="@+id/button3" android:layout_marginRight="10dip"></Button>
+</LinearLayout>
+<TableRow android:id="@+id/tableRow2" android:layout_width="fill_parent" android:layout_height="10dp"></TableRow>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout2">
+    <Button android:layout_height="wrap_content" android:text="走到左黑标" android:layout_width="wrap_content" android:id="@+id/button4" android:layout_marginRight="10dip"></Button>
+    <Button android:layout_height="wrap_content" android:text="走到右黑标" android:layout_width="wrap_content" android:id="@+id/button5" android:layout_marginRight="10dip"></Button>
+    <Button android:layout_height="wrap_content" android:text="走到标签处" android:layout_width="wrap_content" android:id="@+id/button6" android:layout_marginRight="10dip"></Button>
+</LinearLayout>
+
+<Button
+    android:id="@+id/button7"
+    android:layout_width="124dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.05"
+    android:text="打印图片" />
+
+<Button
+    android:id="@+id/button8"
+    android:layout_width="126dp"
+    android:layout_height="wrap_content"
+    android:text="打印二维码" />
+
+</LinearLayout>
