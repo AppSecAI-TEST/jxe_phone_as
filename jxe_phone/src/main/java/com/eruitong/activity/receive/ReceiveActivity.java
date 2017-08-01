@@ -622,7 +622,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
                     mRbExpress.setClickable(false);
                     // }
                         /*if ("Henansheng".equals(provinceCode)) {
-							mRbGeneral.setChecked(false);
+                            mRbGeneral.setChecked(false);
 							mRbGeneral2.setClickable(true);
 							mRbExpress.setClickable(false);
 						}else{	*/
@@ -1678,7 +1678,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         }
         mInfo.meterageWeightQty = (new StringBuilder(String.valueOf(decimalformat.format(double1)))).toString();
 
-        mInfo.quantity = mEdtQuantity.getText().toString().trim();
+        String quantityStr = mEdtQuantity.getText().toString().trim();
 
         // 根据重量计算上门费
         if (mInfo.productTypeCode.equals("B3")) {
@@ -1691,9 +1691,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         if (mInfo.meterageWeightQty != null && !"".equals(mInfo.meterageWeightQty)) {
             double1 = Double.valueOf(Double.parseDouble(mInfo.meterageWeightQty));
         }
-        Double quantity = 0.0;
-        if (mInfo.quantity != null && !"".equals(mInfo.quantity)) {
-            quantity = Double.valueOf(Double.parseDouble(mInfo.quantity));
+        if (TextUtils.isEmpty(quantityStr)) {
+            mInfo.quantity = Integer.parseInt(quantityStr);
         }
 
         PriceInfoList = new ArrayList();
@@ -1733,10 +1732,10 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
 
                     double standardWeight = Double.parseDouble(((PriceInfo) PriceInfoList.get(i)).standardWeight);
 
-                    mEdtRealWeightQty.setText(String.valueOf(standardWeight * quantity));
+                    mEdtRealWeightQty.setText(String.valueOf(standardWeight * mInfo.quantity));
 
 
-                    mEdtWaybillFee.setText((new BigDecimal(decimalformat.format(Double.valueOf(d * quantity)))
+                    mEdtWaybillFee.setText((new BigDecimal(decimalformat.format(Double.valueOf(d * mInfo.quantity)))
                             .setScale(0, BigDecimal.ROUND_UP).toString()));
                     i++;
                 }
@@ -1812,8 +1811,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         try {
             View view = getLayoutInflater().inflate(R.layout.popupwindow_list, null);
             @SuppressWarnings("unchecked") SimpleAdapter simpleadapter = new SimpleAdapter(this, mCustomerSeleList, R
-                    .layout.popupwindow_item, new String[]{"name", "tel", "address"}, new int[]{R.id.item_pop_name, R.id
-                    .item_pop_phone, R.id.item_pop_adress});
+                    .layout.popupwindow_item, new String[]{"name", "tel", "address"}, new int[]{R.id.item_pop_name, R
+                    .id.item_pop_phone, R.id.item_pop_adress});
             ListView listview = (ListView) view.findViewById(R.id.listview);
             listview.setAdapter(simpleadapter);
             listview.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -2387,7 +2386,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         mInfo.consignorAddr = mEdtConsignorAddr.getText().toString().trim();
         mInfo.addresseeContName = mEdtAddresseeContName.getText().toString().trim();
         mInfo.addresseeAddr = mEdtAddresseeAddr.getText().toString().trim();
-        mInfo.quantity = mEdtQuantity.getText().toString().trim();
+        mInfo.quantity = Integer.parseInt(mEdtQuantity.getText().toString().trim());
         mInfo.consName = mSpnConsName.getSelectedItem().toString().trim();
         mInfo.realWeightQty = mEdtRealWeightQty.getText().toString().trim();
         mInfo.volume = mEdtVolume.getText().toString().trim();
@@ -2547,7 +2546,7 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             toastTxt("重量或体积至少一个不为空");
             return false;
         }
-        if (TextUtils.isEmpty(mInfo.quantity)) {
+        if (mInfo.quantity <= 0) {
             toastTxt("件数不能为空");
             return false;
         }
@@ -2576,7 +2575,8 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
         } else {
             toastTxt("返单份数不能为空");
             return false;
-        } if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(mInfo.signBackSize)) {
+        }
+        if (!mCkbSignBack.isChecked() || !TextUtils.isEmpty(mInfo.signBackSize)) {
         } else {
             toastTxt("返单张数不能为空");
             return false;
@@ -2591,19 +2591,20 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
             toastTxt("派送费不能为空");
             return false;
         }
-        if (mInfo.productTypeCode.equals("B3") && (mInfo.fuelServiceFee.doubleValue() == 0 || mInfo.fuelServiceFee == null)) {
+        if (mInfo.productTypeCode.equals("B3") && (mInfo.fuelServiceFee.doubleValue() == 0 || mInfo.fuelServiceFee ==
+                null)) {
             toastTxt("上门费不能为空");
             return false;
         }
 		/*if(destZoneCode!=null && productTypeCode!=null&&meterageWeightQty!=null){
 			queryDeliverCommission();
 		}*/
-        if (mInfo.quantity.equals("1")) {
+        if (mInfo.quantity == 1) {
             acceptInputDB.insertRank(mInfo, MyApp.mEmpCode, MyApp.mEmpName, "02", "4", 0, custIdentityCard, consType);
             return true;
         }
 
-        if (Integer.parseInt(mInfo.quantity) <= 1) {
+        if (mInfo.quantity <= 1) {
             toastTxt("数据添加失败");
             return false;
         } else {

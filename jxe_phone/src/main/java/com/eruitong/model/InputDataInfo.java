@@ -69,7 +69,7 @@ public class InputDataInfo {
     public String outsiteName;
     public String paymentTypeCode;
     public String productTypeCode;
-    public String quantity;
+    public int quantity;
     public String realWeightQty;
     public String serviceTypeCode;
     public String settlementTypeCode;
@@ -123,7 +123,7 @@ public class InputDataInfo {
         sourceZoneCode = "";
         destZoneCode = "";
         waybillNo = "";
-        quantity = "0";
+        quantity = 0;
         consignorPhone = "";
         consignorContName = "";
         consignorAddr = "";

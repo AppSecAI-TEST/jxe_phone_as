@@ -297,7 +297,7 @@ public class QueryLocalActivity extends BaseActivity implements Hearer {
     }
 
     private void quireWaybillNo(InputDataInfo inputdatainfo) {
-        BluetoothPrintTool.xiaopiao(inputdatainfo, childList);
+        BluetoothPrintTool.xiaopiao(inputdatainfo, childList, false);
     }
 
     private void addData(String s) {

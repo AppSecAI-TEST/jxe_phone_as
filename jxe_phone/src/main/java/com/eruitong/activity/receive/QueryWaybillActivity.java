@@ -508,7 +508,7 @@ public class QueryWaybillActivity extends BaseActivity implements Hearer {
     private void xiaopiao() {
         appendData();
 
-        BluetoothPrintTool.xiaopiao(inputDataInfo, inputDataInfo.childNoLists);
+        BluetoothPrintTool.xiaopiao(inputDataInfo, inputDataInfo.childNoLists,false);
     }
 
     private void appendData() {
