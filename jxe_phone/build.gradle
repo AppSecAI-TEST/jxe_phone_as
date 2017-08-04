@@ -11,6 +11,11 @@ android {
         applicationId "com.eruitong.eruitong"
         minSdkVersion 10
         targetSdkVersion 21
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
 
     buildTypes {
@@ -28,10 +33,9 @@ android {
 }
 
 dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:support-v4:21.0.0'
     compile 'com.google.code.gson:gson:2.8.0'
-    compile files('libs/bugly-1.2.7-release.jar')
-    compile files('libs/core.jar')
-    compile files('libs/xUtils-2.6.14.jar')
-    compile files('libs/zpSDK.jar')
+    compile 'com.tencent.bugly:crashreport:2.6.5'
+    compile 'com.tencent.bugly:nativecrashreport:3.3.0'
 }

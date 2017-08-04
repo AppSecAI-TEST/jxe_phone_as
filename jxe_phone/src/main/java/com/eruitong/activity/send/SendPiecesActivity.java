@@ -903,7 +903,7 @@ public class SendPiecesActivity extends BaseActivity implements Hearer {
         }
 
         mTxtWeight.setText(data.meterageWeightQty);
-        mTxtQuantity.setText(data.quantity);
+        mTxtQuantity.setText(String.valueOf(data.quantity));
         mTxtWaybillMoney.setText(data.waybillFee);
         mEdtDeliverCommission.setText(data.deliverCommission);
         mEdtDownDeliverFee.setText(data.downDeliverFee);

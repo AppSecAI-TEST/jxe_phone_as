@@ -3247,7 +3247,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
         mEdtAddresseeAddr.setText(data.addresseeAddr);
         mEdtConsName.setText(data.consName);
         beforeConsName = data.consName;
-        mEdtQuantity.setText(data.quantity);
+        mEdtQuantity.setText(String.valueOf(data.quantity));
         mEdtRealWeightQty.setText(data.meterageWeightQty);
         beforeRealWeightQty = data.meterageWeightQty;
         beforewaybillFee = data.waybillFee;
