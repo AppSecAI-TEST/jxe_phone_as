@@ -176,7 +176,7 @@ public class BluetoothPrintTool {
                 + "保价费").append(inputdatainfo.insuranceFee).append("元  回单费").append(inputdatainfo.signBackFee).append
                 (" " + "").append(inputdatainfo.signBackNo).toString(), "宋体", 3D, 0, true, false, false);
 
-	/*	if (isHenan(inputdatainfo.provinceCode)) {
+	/*	if (MyUtils.isHenan(inputdatainfo.provinceCode)) {
             zpSDK.zp_draw_text_ex(1.0D, 22.5D, "货款买方直接转给卖方", "宋体", 6D, 0, true, false, false);
 		} else {
 			zpSDK.zp_draw_text_ex(1.0D, 22.5D, "一  票   送  货  到   店  铺", "宋体", 6D, 0, true, false, false);
@@ -200,7 +200,7 @@ public class BluetoothPrintTool {
         }
 
         String s = "";
-        if (isHenan(inputdatainfo.provinceCode)) {
+        if (MyUtils.isHenan(inputdatainfo.provinceCode)) {
             s = "货款";
         } else {
             s = "代收款";
@@ -273,7 +273,6 @@ public class BluetoothPrintTool {
         zpSDK.zp_draw_line(0.0D, 34D, 72D, 34D, 3);
         zpSDK.zp_draw_line(50D, 48D, 72D, 48D, 3);
         zpSDK.zp_draw_line(10D, 0.0D, 10D, 14D, 3);
-        zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
         zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
         zpSDK.zp_draw_line(50D, 34D, 50D, 53D, 3);
         zpSDK.zp_draw_text_ex(1.0D, 5.0D, "聚信", "宋体", 4D, 0, true, true, false);
@@ -569,7 +568,7 @@ public class BluetoothPrintTool {
                 itemData.deliverFee = "0.0";
             }
 
-            if (isHenan(itemData.provinceCode)) {
+            if (MyUtils.isHenan(itemData.provinceCode)) {
 
                 String bankT = "";
                 if ("0".equals(itemData.bankType)) {
@@ -1065,17 +1064,6 @@ public class BluetoothPrintTool {
         zpSDK.zp_goto_mark_label(120);
         zpSDK.zp_page_free();
         return true;
-    }
-
-    private static boolean isHenan(String str) {
-        if (null == str) {
-            str = "";
-        }
-        if ("Henansheng".equals(str)) {
-            return true;
-        }
-
-        return false;
     }
 
     private static Bitmap scaleSignBitmap(Bitmap src) {

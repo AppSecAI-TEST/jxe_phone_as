@@ -16,6 +16,9 @@
     <string name="save_succsee">保存成功</string>
     <string name="net_error">网络错误，请检查网络连接</string>
 
+    <string name="connect_wifi">请先连接WiFi！</string>
+
+
     <string-array name="http_path">
         <item>http://copserver.jx-express.cn/jxe-cop</item>
         <item>http://124.115.26.70/jxe-cop</item>

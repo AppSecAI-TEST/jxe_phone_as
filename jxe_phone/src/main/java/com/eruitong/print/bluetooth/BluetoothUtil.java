@@ -82,7 +82,6 @@ public class BluetoothUtil {
 				i++;
 			}
 		}
-
 	}
 
 	public static void print(String s, List list) {
