@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.eruitong.eruitong"
           xmlns:android="http://schemas.android.com/apk/res/android"
-          android:versionCode="63"
-          android:versionName="1.6.2">
-
-    <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="19"/>
+    >
 
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -281,6 +276,12 @@
         </activity>
         <activity
             android:name="com.eruitong.activity.receive.QueryConsignorCommissionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name="com.eruitong.activity.login.SetWifiActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">

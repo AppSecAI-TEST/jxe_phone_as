@@ -12,12 +12,12 @@
         <RelativeLayout
             android:id="@+id/linearLayout2"
             android:layout_width="fill_parent"
-            android:layout_height="40.0dip"
+            android:layout_height="45.0dip"
             android:background="@drawable/layout_menu_top" >
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_gravity="left"
                 android:background="@drawable/n_settingreturn_btn"
                 android:paddingLeft="5dp"

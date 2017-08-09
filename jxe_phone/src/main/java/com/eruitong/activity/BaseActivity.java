@@ -3,7 +3,6 @@ package com.eruitong.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 /**
@@ -16,7 +15,7 @@ public class BaseActivity extends Activity {
     protected Activity mActivity;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = mActivity = this;
     }
