@@ -16,8 +16,17 @@
     <string name="save_succsee">保存成功</string>
     <string name="net_error">网络错误，请检查网络连接</string>
 
+    <string name="connect">连接</string>
+    <string name="unConnect">断开连接</string>
+    <string name="disconnect">关闭</string>
+    <string name="print_IP">打印机 IP:</string>
+    <string name="print__PC_port">TCP端口号:</string>
     <string name="connect_wifi">请先连接WiFi！</string>
-
+    <string name="calibration_success">已发送到打印机！</string>
+    <string name="calibration_fail">校准失败！</string>
+    <string name="disconnect_wifi">如果网络和参数都合适我是不会拒绝的！</string>
+    <string name="connect_success">连接成功!</string>
+    <string name="connect_fail">连接失败!</string>
 
     <string-array name="http_path">
         <item>http://copserver.jx-express.cn/jxe-cop</item>

@@ -102,7 +102,7 @@ public class InputDataInfo {
     public String strConsignedTm;
     public String sourcedistrictCode;
     public String sourceZoneName;
-    public Double fuelServiceFee = 0.0;
+    public Double fuelServiceFee;
     public String deliverWaybillFee;
     public String provinceCode;
     //public String deliverFeeCommissio;
