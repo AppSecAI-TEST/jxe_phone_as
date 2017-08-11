@@ -48,10 +48,9 @@ public class BluetoothPrintTool {
         } else {
             fuelServiceFee = info.fuelServiceFee;
         }
-        double d = Double.valueOf(Double.parseDouble(info.waybillFee) + Double.parseDouble(info
-                .signBackFee) + Double.parseDouble(info.waitNotifyFee) + Double.parseDouble(info
-                .deboursFee) + Double.parseDouble(info.insuranceFee) + Double.parseDouble(info
-                .deliverFee)) + fuelServiceFee;
+        double d = Double.valueOf(Double.parseDouble(info.waybillFee) + Double.parseDouble(info.signBackFee) + Double
+                .parseDouble(info.waitNotifyFee) + Double.parseDouble(info.deboursFee) + Double.parseDouble(info
+                .insuranceFee) + Double.parseDouble(info.deliverFee)) + fuelServiceFee;
         double d1 = Double.parseDouble(info.goodsChargeFee);
         // double d2 =
         // Double.parseDouble(inputdatainfo.deboursFee)+(inputdatainfo.fuelServiceFee==null?0.0:inputdatainfo
@@ -77,104 +76,57 @@ public class BluetoothPrintTool {
         //zpSDK.zp_draw_line(0.0D, 48D, 72D, 48D, 3);
         zpSDK.zp_draw_line(12D, 0D, 12D, 8D, 3);
 
-		/*
-         * zpSDK.zp_draw_text_ex(0.9D, 3.2D, "聚", "宋体", 3D, 0, true, false,
-		 * false); zpSDK.zp_draw_text_ex(0.9D, 7D, "信", "宋体", 3D, 0, true,
-		 * false, false);
-		 */
         /*
          * zpSDK.zp_draw_text_ex(1.0D, 7D, "聚信代收款  招行来代管", "宋体",
 		 * 6.7999999999999998D, 0, true, true, false);
 		 */
         zpSDK.zp_draw_text_ex(1.0D, 3D, info.consignedTm.substring(5, 10), "宋体", 3D, 0, true, true, false);
         zpSDK.zp_draw_text_ex(1.0D, 7D, info.consignedTm.substring(11, 16), "宋体", 3D, 0, true, true, false);
-        /*
-         * zpSDK.zp_draw_text_ex(4.0D,
-		 * 3.5D,inputdatainfo.consignedTm.substring(5, 10), "宋体", 3D, 0, true,
-		 * false, false); zpSDK.zp_draw_text_ex(4.0D, 7.5D,
-		 * inputdatainfo.consignedTm.substring(11, 16), "宋体", 3D, 0, true,
-		 * false, false);
-		 */
 
         if (info.productTypeCode.equals("B1")) {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("快递  运单号")).append(info.waybillNo).append(" ")
-                    .append(info.sourceZoneCode).append(" ").append(info.consignorContName)
-                    .toString(), "宋体", 3D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("快递  运单号")).append(info.waybillNo).append(" ").append
+                    (info.sourceZoneCode).append(" ").append(info.consignorContName).toString(), "宋体", 3D, 0, true,
+                    false, false);
 
         } else if (info.productTypeCode.equals("B2")) {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普货  运单号")).append(info.waybillNo).append(" ")
-                    .append(info.sourceZoneCode).append(" ").append(info.consignorContName)
-                    .toString(), "宋体", 3D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普货  运单号")).append(info.waybillNo).append(" ").append
+                    (info.sourceZoneCode).append(" ").append(info.consignorContName).toString(), "宋体", 3D, 0, true,
+                    false, false);
         } else if (info.productTypeCode.equals("B3")) {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普快  运单号")).append(info.waybillNo).append(" ")
-                    .append(info.sourceZoneCode).append(" ").append(info.consignorContName)
-                    .toString(), "宋体", 3D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普快  运单号")).append(info.waybillNo).append(" ").append
+                    (info.sourceZoneCode).append(" ").append(info.consignorContName).toString(), "宋体", 3D, 0, true,
+                    false, false);
         } else {
-            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普货  运单号")).append(info.waybillNo).append(" ")
-                    .append(info.sourceZoneCode).append(" ").append(info.consignorContName)
-                    .toString(), "宋体", 3D, 0, true, false, false);
-        }
-
-		/*
-         * if (!"02911".equals(inputdatainfo.sourcedistrictCode)) {
-		 * 
-		 * if (!inputdatainfo.productTypeCode.equals("B1")) { if
-		 * (!inputdatainfo.productTypeCode.equals("B2")) {
-		 * zpSDK.zp_draw_text_ex(13D, 11D, (new
-		 * StringBuilder("普快  运单号")).append(
-		 * inputdatainfo.waybillNo).append(" ").
-		 * append(inputdatainfo.sourceZoneCode)
-		 * .append(" ").append(inputdatainfo.consignorContName).toString(),
-		 * "宋体", 3D, 0, true, false, false); } else { zpSDK.zp_draw_text_ex(
-		 * 13D, 11D, (new
-		 * StringBuilder("普货  运单号")).append(inputdatainfo.waybillNo).append(" ")
-		 * .
-		 * append(inputdatainfo.sourceZoneCode).append(" ").append(inputdatainfo
-		 * .consignorContName) .toString(), "宋体", 3D, 0, true, false, false); }
-		 * } else { zpSDK.zp_draw_text_ex(13D, 11D, (new
-		 * StringBuilder("快递  运单号")).append(inputdatainfo.waybillNo).append(" ")
-		 * .
-		 * append(inputdatainfo.sourceZoneCode).append(" ").append(inputdatainfo
-		 * .consignorContName).toString(), "宋体", 3D, 0, true, false, false); }
-		 * 
-		 * } else { zpSDK.zp_draw_text_ex(13D, 11D, (new
-		 * StringBuilder("普快  运单号")
-		 * ).append(inputdatainfo.waybillNo).append(" ").
-		 * append(inputdatainfo.sourceZoneCode)
-		 * .append(" ").append(inputdatainfo.consignorContName).toString(),
-		 * "宋体", 3D, 0, true, false, false);
-		 * 
-		 * }
-		 */
-
-        if (!MyUtils.isEmpty(info.addresseeMobile)) {
-            if (!MyUtils.isEmpty(info.addresseePhone)) {
-                zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(info.addresseeDistName)))
-                        .append(" ").append(info.addresseeContName).append(" ").append(info
-                                .addresseeMobile).append(" 取件费  ").append(fuelServiceFee).toString(), "宋体", 3D, 0,
-                        true, false, false);
-            } else {
-                zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(info.addresseeDistName)))
-                        .append(" ").append(info.addresseeContName).append(" ").append(info
-                                .addresseeMobile).append(" 取件费  ").append(fuelServiceFee).toString(), "宋体", 3D, 0,
-                        true, false, false);
-            }
-        } else {
-            zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(info.addresseeDistName)))
-                    .append(" ").append(info.addresseeContName).append(" ").append(info
-                            .addresseePhone).append(" 取件费  ").append(fuelServiceFee).toString(), "宋体", 3D, 0, true,
+            zpSDK.zp_draw_text_ex(13D, 3D, (new StringBuilder("普货  运单号")).append(info.waybillNo).append(" ").append
+                    (info.sourceZoneCode).append(" ").append(info.consignorContName).toString(), "宋体", 3D, 0, true,
                     false, false);
         }
 
-        zpSDK.zp_draw_text_ex(1.0D, 11D, (new StringBuilder(String.valueOf(info.consName))).append(" ")
-                .append(info.quantity).append("件 重量").append(info.meterageWeightQty).append("kg " +
-                        "运费").append(info.waybillFee).append("  垫付").append(info.deboursFee)/*
+        if (!MyUtils.isEmpty(info.addresseeMobile)) {
+            if (!MyUtils.isEmpty(info.addresseePhone)) {
+                zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(info.addresseeDistName))).append(" "
+                        + "").append(info.addresseeContName).append(" ").append(info.addresseeMobile).append(" 取件费  "
+                        + "").append(fuelServiceFee).toString(), "宋体", 3D, 0, true, false, false);
+            } else {
+                zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(info.addresseeDistName))).append(" "
+                        + "").append(info.addresseeContName).append(" ").append(info.addresseeMobile).append(" 取件费  "
+                        + "").append(fuelServiceFee).toString(), "宋体", 3D, 0, true, false, false);
+            }
+        } else {
+            zpSDK.zp_draw_text_ex(13D, 7D, (new StringBuilder(String.valueOf(info.addresseeDistName))).append(" ")
+                    .append(info.addresseeContName).append(" ").append(info.addresseePhone).append(" 取件费  ").append
+                            (fuelServiceFee).toString(), "宋体", 3D, 0, true, false, false);
+        }
+
+        zpSDK.zp_draw_text_ex(1.0D, 11D, (new StringBuilder(String.valueOf(info.consName))).append(" ").append(info
+                .quantity).append("件 重量").append(info.meterageWeightQty).append("kg " + "运费").append(info.waybillFee)
+                .append("  垫付").append(info.deboursFee)/*
                         .append(" 派送费")
 						.append(inputdatainfo.deliverFee)*/.toString(), "宋体", 2.7999999999999998D, 0, true, false,
                 false);
-        zpSDK.zp_draw_text_ex(1.0D, 15D, (new StringBuilder("声明价值")).append(info.insuranceAmount).append(" "
-                + "保价费").append(info.insuranceFee).append("元  回单费").append(info.signBackFee).append
-                (" " + "").append(info.signBackNo).toString(), "宋体", 3D, 0, true, false, false);
+        zpSDK.zp_draw_text_ex(1.0D, 15D, (new StringBuilder("声明价值")).append(info.insuranceAmount).append(" " + "保价费")
+                .append(info.insuranceFee).append("元  回单费").append(info.signBackFee).append(" " + "").append(info
+                        .signBackNo).toString(), "宋体", 3D, 0, true, false, false);
 
 	/*	if (MyUtils.isHenan(inputdatainfo.provinceCode)) {
             zpSDK.zp_draw_text_ex(1.0D, 22.5D, "货款买方直接转给卖方", "宋体", 6D, 0, true, false, false);
@@ -205,9 +157,9 @@ public class BluetoothPrintTool {
         } else {
             s = "代收款";
         }
-        zpSDK.zp_draw_text_ex(1.0D, 19D, (new StringBuilder(s)).append(info.goodsChargeFee).append(" 服务费")
-                .append(info.chargeAgentFee).append(" ").append(bankT).append(" ").append(" 等通知费").append
-                        (info.waitNotifyFee).toString(), "宋体", 3D, 0, true, false, false);
+        zpSDK.zp_draw_text_ex(1.0D, 19D, (new StringBuilder(s)).append(info.goodsChargeFee).append(" 服务费").append
+                (info.chargeAgentFee).append(" ").append(bankT).append(" ").append(" 等通知费").append(info
+                .waitNotifyFee).toString(), "宋体", 3D, 0, true, false, false);
         zpSDK.zp_draw_text_ex(1.0D, 23D, (new StringBuilder("银行账号 ")).append(info.bankNo)
                 /*.append(inputdatainfo.transferDays).append("天转")*/.toString(), "宋体", 3D, 0, true, false, false);
 
@@ -226,8 +178,8 @@ public class BluetoothPrintTool {
             zpSDK.zp_draw_text_ex(1.0D, 39.5D, (new StringBuilder("寄付  ")).append(d).append("元").toString(), "宋体",
                     3D, 0, true, false, false);
         }
-        zpSDK.zp_draw_text_ex(1.0D, 44D, (new StringBuilder("备注:")).append(info.waybillRemk).toString(),
-                "宋体", 3D, 0, true, false, false);
+        zpSDK.zp_draw_text_ex(1.0D, 44D, (new StringBuilder("备注:")).append(info.waybillRemk).toString(), "宋体", 3D, 0,
+                true, false, false);
         zpSDK.zp_draw_text_ex(39.5D, 39.5D, "客服热线:", "宋体", 3D, 0, true, false, false);
 
         zpSDK.zp_draw_text_ex(45D, 44D, "签字", "宋体", 3.8D, 0, true, false, false);
@@ -247,16 +199,32 @@ public class BluetoothPrintTool {
     /**
      * 打印标签
      *
-     * @param inputdatainfo
-     * @param childList     子列表
-     * @param isLook     接受快件页面的 是否验视
+     * @param info
+     * @param childList 子列表
+     * @param isLook    接受快件页面的 是否验视
      * @return true：继续执行 false:关闭显示Dialog
      */
-    @SuppressWarnings("unused")
-    public static boolean xiaopiao(InputDataInfo inputdatainfo, List childList, boolean isLook) {
-        if (MyUtils.isEmpty(inputdatainfo.teamCode)) {
-            inputdatainfo.teamCode = "";
+    public static boolean xiaopiao(InputDataInfo info, List<String> childList, boolean isLook) {
+        if (MyUtils.isEmpty(info.teamCode)) {
+            info.teamCode = "";
         }
+
+        boolean normal = xiaopiao(info, info.waybillNo, isLook);
+        if (!normal) return false;
+
+        if (info.quantity < 2) {
+            return true;
+        }
+
+        for (String childWaybillNo : childList) {
+            boolean normal1 = xiaopiao(info, childWaybillNo, isLook);
+            if (!normal1) return false;
+        }
+        return true;
+    }
+
+    @SuppressWarnings("unused")
+    public static boolean xiaopiao(InputDataInfo info, String waybillNo, boolean isLook) {
         if (!zpSDK.zp_page_create(80D, 61D)) {
             return false;
         }
@@ -264,192 +232,74 @@ public class BluetoothPrintTool {
         zpSDK.TextPosWinStyle = false;
         zpSDK.zp_draw_rect(0.0D, 0.0D, 72D, 53D, 3);
         zpSDK.zp_draw_line(0.0D, 14D, 72D, 14D, 3);
+        zpSDK.zp_draw_line(0.0D, 34D, 72D, 34D, 3);
+        zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
         zpSDK.zp_draw_line(6D, 19D, 72D, 19D, 3);
         zpSDK.zp_draw_line(6D, 24D, 72D, 24D, 3);
         zpSDK.zp_draw_line(6D, 29D, 72D, 29D, 3);
-        zpSDK.zp_draw_line(0.0D, 34D, 72D, 34D, 3);
-        zpSDK.zp_draw_line(50D, 48D, 72D, 48D, 3);
         zpSDK.zp_draw_line(10D, 0.0D, 10D, 14D, 3);
-        zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
+        zpSDK.zp_draw_line(50D, 48D, 72D, 48D, 3);
         zpSDK.zp_draw_line(50D, 34D, 50D, 53D, 3);
         zpSDK.zp_draw_text_ex(1.0D, 5.0D, "聚信", "宋体", 4D, 0, true, true, false);
-        zpSDK.zp_draw_text_box(1.0D, 9D, 9D, 3D, inputdatainfo.consignedTm.substring(5, 10), "宋体", 3D, 0, true, true,
-                false);
-        zpSDK.zp_draw_text_box(1.0D, 13D, 9D, 3D, inputdatainfo.consignedTm.substring(11, 16), "宋体", 3D, 0, true,
-                true, false);
-        if (MyUtils.isEmpty(inputdatainfo.partitionName)) {
+        zpSDK.zp_draw_text_box(1.0D, 9D, 9D, 3D, info.consignedTm.substring(5, 10), "宋体", 3D, 0, true, true, false);
+        zpSDK.zp_draw_text_box(1.0D, 13D, 9D, 3D, info.consignedTm.substring(11, 16), "宋体", 3D, 0, true, true, false);
+        if (MyUtils.isEmpty(info.partitionName)) {
             // 目的地城市 + 目的地网点
-            zpSDK.zp_draw_text_ex(10D, 12D, inputdatainfo.addresseeDistName, "宋体", 12D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(33D, 12.1D, inputdatainfo.outsiteName, "宋体", 12D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(58D, 12.1D, inputdatainfo.teamCode, "宋体", 14D, 0, false, false, false);
+            zpSDK.zp_draw_text_ex(10D, 12D, info.addresseeDistName, "宋体", 12D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(33D, 12.1D, info.outsiteName, "宋体", 12D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(58D, 12.1D, info.teamCode, "宋体", 14D, 0, false, false, false);
         } else {
-            zpSDK.zp_draw_text_ex(10D, 12.1D, inputdatainfo.partitionName, "宋体", 14D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(28D, 12.1D, inputdatainfo.addresseeDistName, "宋体", 13D, 0, true, false, false);
-            zpSDK.zp_draw_text_ex(57D, 12.1D, inputdatainfo.teamCode, "宋体", 14D, 0, false, false, false);
+            zpSDK.zp_draw_text_ex(10D, 12.1D, info.partitionName, "宋体", 14D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(28D, 12.1D, info.addresseeDistName, "宋体", 13D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(57D, 12.1D, info.teamCode, "宋体", 14D, 0, false, false, false);
         }
 
         if (isLook) {
             zpSDK.zp_draw_text_box(67.5D, 19D, 5D, 4D, "已验视", "宋体", 4D, 0, false, false, false);
         }
 
-        zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, inputdatainfo.addresseeContName, "宋体", 5D, 0, false, false, false);
-        zpSDK.zp_draw_text_ex(7D, 18D, (new StringBuilder(String.valueOf(inputdatainfo.waybillNo))).append("  ")
-                .append(inputdatainfo.sourceZoneCode).append("  ").append(inputdatainfo.consignorContName).toString()
-                , "宋体", 4D, 0, true, false, false);
+        zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, info.addresseeContName, "宋体", 5D, 0, false, false, false);
+        zpSDK.zp_draw_text_ex(7D, 18D, (new StringBuilder(String.valueOf(info.waybillNo))).append("  ").append(info
+                .sourceZoneCode).append("  ").append(info.consignorContName).toString(), "宋体", 4D, 0, true, false,
+                false);
 
-        if (!MyUtils.isEmpty(inputdatainfo.addresseeMobile)) {
-            if (!MyUtils.isEmpty(inputdatainfo.addresseePhone)) {
-                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(inputdatainfo.addresseeDistName)))
-                        .append(inputdatainfo.addresseePhone).append(" / ").append(inputdatainfo.addresseeMobile)
-                        .toString(), "宋体", 4D, 0, true, false, false);
+        if (!MyUtils.isEmpty(info.addresseeMobile)) {
+            if (!MyUtils.isEmpty(info.addresseePhone)) {
+                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(info.addresseeDistName))).append
+                        (info.addresseePhone).append(" / ").append(info.addresseeMobile).toString(), "宋体", 4D, 0,
+                        true, false, false);
             } else {
-                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(inputdatainfo.addresseeDistName)))
-                        .append(inputdatainfo.addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
+                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(info.addresseeDistName))).append
+                        (info.addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
 
             }
         } else {
-            zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(inputdatainfo.addresseeDistName)))
-                    .append(inputdatainfo.addresseePhone).toString(), "宋体", 4D, 0, true, false, false);
+            zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(info.addresseeDistName))).append(info
+                    .addresseePhone).toString(), "宋体", 4D, 0, true, false, false);
 
         }
 
-        zpSDK.zp_draw_text_ex(7D, 28D, inputdatainfo.addresseeAddr, "宋体", 3.3999999999999999D, 0, true, false, false);
-        zpSDK.zp_draw_text_ex(7D, 33D, (new StringBuilder(String.valueOf(inputdatainfo.consName))).append("1/")
-                .append(inputdatainfo.quantity).append("件 重量").append(inputdatainfo.meterageWeightQty).append("kg " +
-                        "收件员").append(inputdatainfo.consigneeEmpCode).toString(), "宋体", 3.6000000000000001D, 0, true,
-                false, false);
+        zpSDK.zp_draw_text_ex(7D, 28D, info.addresseeAddr, "宋体", 3.3999999999999999D, 0, true, false, false);
+        zpSDK.zp_draw_text_ex(7D, 33D, (new StringBuilder(String.valueOf(info.consName))).append("1/").append(info
+                .quantity).append("件 重量").append(info.meterageWeightQty).append("kg " + "收件员").append(info
+                .consigneeEmpCode).toString(), "宋体", 3.6000000000000001D, 0, true, false, false);
 
-        // if (!"02911".equals(inputdatainfo.sourcedistrictCode)) {
-        //
-        // if (inputdatainfo.productTypeCode.equals("B1")) {
-        // zpSDK.zp_draw_text_ex(53D, 46.5D, "快", "宋体", 14D, 0, true,
-        // false, false);
-        // } else {
-        // if (inputdatainfo.productTypeCode.equals("B2")
-        // || inputdatainfo.productTypeCode.equals("B3")) {
-        // zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0, true,
-        // false, false);
-        // }
-        // }
-        // } else {
-        // zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0, true, false,
-        // false);
-        // }
-        if (inputdatainfo.productTypeCode.equals("B1")) {
+        if (info.productTypeCode.equals("B1")) {
             zpSDK.zp_draw_text_ex(51D, 46.5D, "快递", "宋体", 10D, 0, true, false, false);
-        } else if (inputdatainfo.productTypeCode.equals("B2")) {
+        } else if (info.productTypeCode.equals("B2")) {
             zpSDK.zp_draw_text_ex(51D, 46.5D, "普货", "宋体", 10D, 0, true, false, false);
-        } else if (inputdatainfo.productTypeCode.equals("B3")) {
+        } else if (info.productTypeCode.equals("B3")) {
             zpSDK.zp_draw_text_ex(51D, 46.5D, "普快", "宋体", 10D, 0, true, false, false);
         }
         zpSDK.zp_draw_text_ex(52D, 52D, "4008-111115", "宋体", 3D, 0, true, false, false);
-        zpSDK.zp_draw_barcode(7D, 35D, inputdatainfo.waybillNo, zpSDK.BARCODE_TYPE.BARCODE_CODE128, 14D, 3, 0);
-        zpSDK.zp_draw_text_ex(10D, 52D, inputdatainfo.waybillNo, "宋体", 3D, 0, false, false, false);
+        zpSDK.zp_draw_barcode(7D, 35D, waybillNo, zpSDK.BARCODE_TYPE.BARCODE_CODE128, 14D, 3, 0);
+        zpSDK.zp_draw_text_ex(10D, 52D, waybillNo, "宋体", 3D, 0, false, false, false);
         zpSDK.zp_page_print(false);
         zpSDK.zp_page_clear();
         zpSDK.zp_goto_mark_label(120);
         zpSDK.zp_page_free();
 
-        if (inputdatainfo.quantity < 2) {
-            return true;
-        }
-
-        int i = 0;
-
-        do {
-
-            if (i >= childList.size()) {
-                return true;
-            }
-
-            if (!zpSDK.zp_page_create(80D, 61D)) {
-                return false;
-            }
-
-            zpSDK.TextPosWinStyle = false;
-            zpSDK.zp_draw_rect(0.0D, 0.0D, 72D, 53D, 3);
-            zpSDK.zp_draw_line(0.0D, 14D, 72D, 14D, 3);
-            zpSDK.zp_draw_line(6D, 19D, 72D, 19D, 3);
-            zpSDK.zp_draw_line(6D, 24D, 72D, 24D, 3);
-            zpSDK.zp_draw_line(6D, 29D, 72D, 29D, 3);
-            zpSDK.zp_draw_line(0.0D, 34D, 72D, 34D, 3);
-            zpSDK.zp_draw_line(50D, 48D, 72D, 48D, 3);
-            zpSDK.zp_draw_line(10D, 0.0D, 10D, 14D, 3);
-            zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
-            zpSDK.zp_draw_line(6D, 14D, 6D, 34D, 3);
-            zpSDK.zp_draw_line(50D, 34D, 50D, 53D, 3);
-            zpSDK.zp_draw_text_ex(1.0D, 5.0D, "聚信", "宋体", 4D, 0, true, true, false);
-            zpSDK.zp_draw_text_box(1.0D, 9D, 9D, 3D, inputdatainfo.consignedTm.substring(5, 10), "宋体", 3D, 0, true,
-                    true, false);
-            zpSDK.zp_draw_text_box(1.0D, 13D, 9D, 3D, inputdatainfo.consignedTm.substring(11, 16), "宋体", 3D, 0, true,
-                    true, false);
-            if (MyUtils.isEmpty(inputdatainfo.partitionName)) {
-                // 目的地城市 + 目的地网点
-                zpSDK.zp_draw_text_ex(10D, 12D, inputdatainfo.addresseeDistName, "宋体", 12D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(33D, 12.1D, inputdatainfo.outsiteName, "宋体", 12D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(58D, 12.1D, inputdatainfo.teamCode, "宋体", 14D, 0, false, false, false);
-            } else {
-                zpSDK.zp_draw_text_ex(10D, 12.1D, inputdatainfo.partitionName, "宋体", 14D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(28D, 12.1D, inputdatainfo.addresseeDistName, "宋体", 13D, 0, true, false, false);
-                zpSDK.zp_draw_text_ex(57D, 12.1D, inputdatainfo.teamCode, "宋体", 14D, 0, false, false, false);
-            }
-
-            if (isLook) {
-                zpSDK.zp_draw_text_box(67.5D, 19D, 5D, 4D, "已验视", "宋体", 4D, 0, false, false, false);
-            }
-
-            zpSDK.zp_draw_text_box(0.5D, 19D, 5D, 5D, inputdatainfo.addresseeContName, "宋体", 5D, 0, false, false,
-                    false);
-            zpSDK.zp_draw_text_ex(7D, 18D, (new StringBuilder(String.valueOf(inputdatainfo.waybillNo))).append("  ")
-                    .append(inputdatainfo.sourceZoneCode).append("  ").append(inputdatainfo.consignorContName)
-                    .toString(), "宋体", 4D, 0, true, false, false);
-
-            if (!MyUtils.isEmpty(inputdatainfo.addresseeMobile)) {
-                if (!MyUtils.isEmpty(inputdatainfo.addresseePhone)) {
-                    zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(inputdatainfo.addresseeDistName)
-                    )).append(inputdatainfo.addresseePhone).append(" / ").append(inputdatainfo.addresseeMobile)
-                            .toString(), "宋体", 4D, 0, true, false, false);
-                } else {
-                    zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(inputdatainfo.addresseeDistName)
-                    )).append(inputdatainfo.addresseeMobile).toString(), "宋体", 4D, 0, true, false, false);
-
-                }
-            } else {
-                zpSDK.zp_draw_text_ex(7D, 23D, (new StringBuilder(String.valueOf(inputdatainfo.addresseeDistName)))
-                        .append(inputdatainfo.addresseePhone).toString(), "宋体", 4D, 0, true, false, false);
-
-            }
-
-            zpSDK.zp_draw_text_ex(7D, 28D, inputdatainfo.addresseeAddr, "宋体", 3.3999999999999999D, 0, true, false,
-                    false);
-            zpSDK.zp_draw_text_ex(7D, 33D, (new StringBuilder(String.valueOf(inputdatainfo.consName))).append(i + 2)
-                    .append("/").append(inputdatainfo.quantity).append("件 重量").append(inputdatainfo
-                            .meterageWeightQty).append("kg 收件员").append(inputdatainfo.consigneeEmpCode).toString(),
-                    "宋体", 3.6000000000000001D, 0, true, false, false);
-
-            // if (!"02911".equals(inputdatainfo.sourcedistrictCode)) {
-
-            if (inputdatainfo.productTypeCode.equals("B1")) {
-                zpSDK.zp_draw_text_ex(51D, 46.5D, "快递", "宋体", 10D, 0, true, false, false);
-            } else if (inputdatainfo.productTypeCode.equals("B2")) {
-                zpSDK.zp_draw_text_ex(51D, 46.5D, "普货", "宋体", 10D, 0, true, false, false);
-            } else if (inputdatainfo.productTypeCode.equals("B3")) {
-                zpSDK.zp_draw_text_ex(51D, 46.5D, "普快", "宋体", 10D, 0, true, false, false);
-            }
-            /*
-			 * } else { zpSDK.zp_draw_text_ex(53D, 46.5D, "普", "宋体", 14D, 0,
-			 * true, false, false); }
-			 */
-
-            zpSDK.zp_draw_text_ex(52D, 52D, "4008-111115", "宋体", 3D, 0, true, false, false);
-            zpSDK.zp_draw_barcode(7D, 35D, (String) childList.get(i), zpSDK.BARCODE_TYPE.BARCODE_CODE128, 14D, 3, 0);
-            zpSDK.zp_draw_text_ex(10D, 52D, (String) childList.get(i), "宋体", 3D, 0, false, false, false);
-            zpSDK.zp_page_print(false);
-            zpSDK.zp_page_clear();
-            zpSDK.zp_goto_mark_label(120);
-            zpSDK.zp_page_free();
-            i++;
-        } while (true);
+        return true;
     }
 
     /**
@@ -539,8 +389,8 @@ public class BluetoothPrintTool {
                         .append(" ").append(itemData.addresseePhone).append(" ").append(addresseeAddrP).toString(),
                         "宋体", 3D, 0, true, false, false);
             }
-			/*
-			 * if(itemData.deliverCommission!=null){ itemData.waybillFee =
+            /*
+             * if(itemData.deliverCommission!=null){ itemData.waybillFee =
 			 * String.valueOf(decimalformat.format(Double.valueOf(itemData.
 			 * waybillFee) -Double.valueOf(itemData.deliverCommission))); }
 			 */
@@ -549,8 +399,8 @@ public class BluetoothPrintTool {
                     .append(itemData.quantity).append("件 重量 ").append(itemData.meterageWeightQty).append("kg ")
                     .append("元 派件员 ").append(deliverEmpCode).toString(), "宋体", 3D, 0, true, false, false);
             zpSDK.zp_draw_text_ex(1.0D, 21.5D, (new StringBuilder("运费 ")).append(itemData.waybillFee).append("元 保价金额 " +
-                    "" + "" + "" + "" + "" + "" + "").append(itemData.insuranceAmount).append("元 保价费 ").append
-                    (itemData.insuranceFee).append("元  ").toString(), "宋体", 3D, 0, true, false, false);
+                    "" + "" + "" + "" + "" + "" + "" + "" + "" + "").append(itemData.insuranceAmount).append("元 保价费 " +
+                    "").append(itemData.insuranceFee).append("元  ").toString(), "宋体", 3D, 0, true, false, false);
 
             if (MyUtils.isEmpty(itemData.goodsChargeFee)) {
                 itemData.goodsChargeFee = "0.0";
@@ -579,24 +429,6 @@ public class BluetoothPrintTool {
                 } else {
                     bankT = "无卡号";
                 }
-				/*if (!"0".equals(itemData.bankType)) {
-					if ("1".equals(itemData.bankType)) {
-						bankT = "浦发银行";
-					}
-					if("3".equals(itemData.bankType)){
-						bankT = "建设银行";
-					}
-					if (!"5".equals(itemData.bankType)) {
-						if (!"-1".equals(itemData.bankType) && itemData.bankNo!=null&&itemData.bankNo.length()>0) {
-						} else {
-							bankT = "无卡号";
-						}
-					} else {
-						bankT = "招商银行";
-					}
-				} else {
-					bankT = "工商银行";
-				}*/
 
                 if (MyUtils.isEmpty(itemData.bankNo)) {
                     itemData.bankNo = "";
@@ -609,7 +441,7 @@ public class BluetoothPrintTool {
 
                 double d = Double.parseDouble(itemData.goodsChargeFee) - Double.parseDouble(itemData.chargeAgentFee);
                 zpSDK.zp_draw_text_ex(1.0D, 33.5D, (new StringBuilder("应转代收 ")).append(d)
-						/*.append("元 代收服务费 ").append(itemData.chargeAgentFee).append("元  ")*/.append("  派送费 ").append
+                        /*.append("元 代收服务费 ").append(itemData.chargeAgentFee).append("元  ")*/.append("  派送费 ").append
                                 (itemData.deliverFee == null ? "0.0" : itemData.deliverFee).append("元  ").toString(),
                         "宋体", 3D, 0, true, false, false);
             } else {
@@ -644,14 +476,15 @@ public class BluetoothPrintTool {
                 itemData.fuelServiceFee = 0.0;
             }
             zpSDK.zp_draw_text_ex(1.0D, 37.5D, (new StringBuilder("签回单费 ")).append(itemData.signBackFee).append("元   " +
-                    "" + "" + "" + "" + "" + "" + "   取件费 ").append(itemData.fuelServiceFee + "元").append("  原返费 ")
-                    .append(itemData.backCargoFee == null ? "0.0" : itemData.backCargoFee + "元").toString(), "宋体",
-                    3D, 0, true, false, false);
+                    "   取件费 ").append(itemData.fuelServiceFee + "元").append("  原返费" + " ").append(itemData
+                    .backCargoFee == null ? "0.0" : itemData.backCargoFee + "元").toString(), "宋体", 3D, 0, true,
+                    false, false);
             if (MyUtils.isEmpty(itemData.signBackNo)) {
                 itemData.signBackNo = "";
             }
             zpSDK.zp_draw_text_ex(1.0D, 41.5D, (new StringBuilder("回单号 ")).append(itemData.signBackNo).append("  收条  " +
-                    "" + "" + "" + "" + "" + "" + " 身份证   盖章").toString(), "宋体", 3D, 0, true, false, false);
+                    "" + "" + "" + "" + "" + "" + "" + "" + "" + " 身份证   盖章").toString(), "宋体", 3D, 0, true, false,
+                    false);
             if (MyUtils.isEmpty(itemData.deboursFee)) {
                 itemData.deboursFee = "0.0";
             }

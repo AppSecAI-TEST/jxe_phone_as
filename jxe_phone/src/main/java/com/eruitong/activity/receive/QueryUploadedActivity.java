@@ -362,7 +362,7 @@ public class QueryUploadedActivity extends Activity implements Hearer {
                 payMethodStr = "到付";
             }
             viewholder.payMethod.setText(payMethodStr);
-            // viewholder.payMethod.setText((listOrder.get(i)).payMethod);
+            // viewholder.payMethod.setText((listOrder.getTypeCode(i)).payMethod);
             return view;
         }
     }

@@ -183,4 +183,39 @@ public class WifiPrintUtil {
             CrashReport.postCatchedException(exception);
         }
     }
+
+
+    /**
+     * 打印一个条码
+     *
+     * @param x      X 坐标
+     * @param y      Y 坐标
+     * @param height 设置条码高度,
+     * @param str    一个长度为 1-100 的字符串
+     */
+    public static void barcode(int x, int y, int height, String str) {
+        barcode(x, y, 0, "1", 2, 2, height, 'N', str);
+    }
+
+    /**
+     * 打印一个条码
+     *
+     * @param x      X 坐标
+     * @param y      Y 坐标
+     * @param rotate 0～不旋转;1～旋转 90°; 2～旋转 180°; 3～旋转 270°
+     * @param pCode  1  Code 128 AUTO
+     * @param sWidth 设置条码中窄单元的宽度
+     * @param lWidth 设置条码中宽单元的宽度
+     * @param height 设置条码高度,
+     * @param ptext  ‘N’不显示条码下方的可读文字；‘B’显示条码下方的可读文字
+     * @param str    一个长度为 1-100 的字符串
+     */
+    public static void barcode(int x, int y, int rotate, String pCode, int sWidth, int lWidth, int height, char
+            ptext, String str) {
+        int nReturn = cdf.PTK_DrawBarcode(XY.W(x), XY.W(y), rotate, pCode, sWidth, lWidth, height, ptext, str);
+        if (nReturn != 0) {
+            Exception exception = new Exception("WIFI在打印条码时出错。错误的内容为：" + str);
+            CrashReport.postCatchedException(exception);
+        }
+    }
 }

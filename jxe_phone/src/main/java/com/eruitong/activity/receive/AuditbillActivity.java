@@ -929,7 +929,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 									return;
 								}
 
-								CustList cust = custList.get(0);
+								CustList cust = custList.getTypeCode(0);
 								consignorContName = cust.getCustName();
 								mEdtConsignorContName.setText(consignorContName);// 寄电姓名
 
@@ -958,7 +958,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 								}
 
 								if (addressList.size() == 1) {
-									AddressList address = addressList.get(0);
+									AddressList address = addressList.getTypeCode(0);
 									mEdtConsignorContName.setText(consignorContName);// 寄电姓名
 									mEdtConsignorAddr.setText(address.getAddress() == null ? "" : address.getAddress
 									());
@@ -982,7 +982,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 										map = new HashMap<String, String>();
 										map.put("name", consignorContName);
 										map.put("tel", cust.getCustMobile());
-										String adr = addressList.get(i).getAddress();
+										String adr = addressList.getTypeCode(i).getAddress();
 										map.put("address", adr);
 										mCustomerSeleList.add(map);
 									}
@@ -1069,7 +1069,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 									return;
 								}
 
-								CustList cust = custList.get(0);
+								CustList cust = custList.getTypeCode(0);
 								addresseeContName = cust.getCustName();
 								mEdtAddresseeContName.setText(addresseeContName);// 收电姓名
 
@@ -1091,7 +1091,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 								}
 
 								if (addressList.size() == 1) {
-									AddressList address = addressList.get(0);
+									AddressList address = addressList.getTypeCode(0);
 									mEdtAddresseeContName.setText(cust.getCustName());// 收电姓名
 									addresseeAddr = address.getAddress();
 									mEdtAddresseeAddr.setText(addresseeAddr == null ? "" : addresseeAddr);
@@ -1114,7 +1114,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 									}
 
 									for (int i = 0; i < max; i++) {
-										addressList2 = addressList.get(i);
+										addressList2 = addressList.getTypeCode(i);
 										map = new HashMap<String, String>();
 										map.put("name", cust.getCustName());
 										map.put("tel", cust.getCustMobile());
@@ -1181,7 +1181,7 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 						return;
 					}
 
-					childNoList.add(childList.get(j));
+					childNoList.add(childList.getTypeCode(j));
 
 					j++;
 				} while (true);
@@ -1680,13 +1680,13 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 
 				public void onItemClick(AdapterView adapterview, View view1, int i, long l) {
 
-					Map map = (Map) mCustomerSeleList.get(i);
+					Map map = (Map) mCustomerSeleList.getTypeCode(i);
 					switch (phoneType) {
 					case 1: {// 寄电
-						consignorAddr = (String) map.get("address");
+						consignorAddr = (String) map.getTypeCode("address");
 						mEdtConsignorAddr.setText(consignorAddr == null ? "" : consignorAddr);
 
-						consignorContName = (String) map.get("name");
+						consignorContName = (String) map.getTypeCode("name");
 						mEdtConsignorContName.setText(consignorContName);// 寄电姓名
 
 						// 收电，获取焦点
@@ -1694,14 +1694,14 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 						break;
 					}
 					case 2: {// 收电
-						addresseeAddr = (String) map.get("address");
+						addresseeAddr = (String) map.getTypeCode("address");
 						mEdtAddresseeAddr.setText(addresseeAddr);
 
-						addresseeContName = (String) map.get("name");
+						addresseeContName = (String) map.getTypeCode("name");
 						mEdtAddresseeContName.setText(addresseeContName);
 
-						String deptCode = (String) map.get("deptCode");
-						teamCode = (String) map.get("teamCode");
+						String deptCode = (String) map.getTypeCode("deptCode");
+						teamCode = (String) map.getTypeCode("teamCode");
 						if (teamCode == null) {
 							teamCode = "";
 						}
@@ -3032,9 +3032,9 @@ public class AuditbillActivity extends BaseActivity implements OnCheckedChangeLi
 			if (i >= childNoList.size()) {
 				return true;
 			}
-			childNoListDB.insertRank(waybillNo, (String) childNoList.get(i),
+			childNoListDB.insertRank(waybillNo, (String) childNoList.getTypeCode(i),
 					(new StringBuilder(String.valueOf(i))).toString(), 0);
-			waybillNoDB.deleteRank((String) childNoList.get(i));
+			waybillNoDB.deleteRank((String) childNoList.getTypeCode(i));
 			i++;
 		} while (true);*/
 

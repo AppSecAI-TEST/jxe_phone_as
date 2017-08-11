@@ -410,7 +410,7 @@ public class SendPiecesActivity extends BaseActivity implements Hearer {
         super.onActivityResult(requestCode, resultCode, data);  
         if (resultCode == Activity.RESULT_OK) {        
             Bundle bundle = data.getExtras();  
-            Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式  
+            Bitmap bitmap = (Bitmap) bundle.getTypeCode("data");// 获取相机返回的数据，并转换为Bitmap图片格式
            // bitmap.createScaledBitmap(bitmap, 200, 200, true);
            Bitmap viewBitMap = scaleBitmap(bitmap);
             byte[] datas=Bitmap2Bytes(viewBitMap);
@@ -487,7 +487,7 @@ public class SendPiecesActivity extends BaseActivity implements Hearer {
                 mEdtWaybillNumber.setText(scanResult);
             }
             if (requestCode == 1) {
-                // Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+                // Bitmap bitmap = (Bitmap) bundle.getTypeCode("data");// 获取相机返回的数据，并转换为Bitmap图片格式
                 Bitmap bitmap;
                 try {
                     bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));

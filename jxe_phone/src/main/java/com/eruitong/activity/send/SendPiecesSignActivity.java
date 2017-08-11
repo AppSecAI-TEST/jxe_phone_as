@@ -625,7 +625,7 @@ public class SendPiecesSignActivity extends BaseActivity implements Hearer {
             }
             // 相机拍照返回
             if (requestCode == 1) {
-                // Bitmap bitmap = (Bitmap) bundle.get("data");//
+                // Bitmap bitmap = (Bitmap) bundle.getTypeCode("data");//
                 // 获取相机返回的数据，并转换为Bitmap图片格式
                 Bitmap bitmap;
                 try {

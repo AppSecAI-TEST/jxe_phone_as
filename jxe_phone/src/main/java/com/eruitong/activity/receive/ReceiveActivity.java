@@ -441,11 +441,11 @@ public class ReceiveActivity extends BaseActivity implements OnCheckedChangeList
     /**
      * 总的子单号
      **/
-    List childList;
+    List<String> childList;
     /**
      * 使用的子单号
      **/
-    List childNoList;
+    List<String> childNoList;
     /**
      * 千回单号列表
      **/
